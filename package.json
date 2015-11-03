@@ -1,0 +1,41 @@
+{
+  "name": "redux-webapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "dev": "webpack-dev-server --devtool eval --progress --colors --hot --content-base build",
+    "deploy": "NODE_ENV=production webpack -p --config webpack.production.config.js"
+  },
+  "author": "",
+  "dependencies": {
+    "babel-core": "^5.8.25",
+    "bootstrap": "^3.3.5",
+    "history": "^1.12.5",
+    "less": "^2.5.3",
+    "normalize.css": "^3.0.3",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "react-imageloader": "^2.1.0",
+    "react-router": "1.0.0-rc2",
+    "redux": "^2.0.0",
+    "redux-devtools": "^2.1.5",
+    "redux-router": "1.0.0-beta3",
+    "redux-thunk": "^1.0.0",
+    "webpack-dev-server": "^1.12.1"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "babel-loader": "^6.0.0",
+    "css-loader": "^0.21.0",
+    "express": "^4.13.3",
+    "file-loader": "^0.8.4",
+    "html-webpack-plugin": "^1.6.2",
+    "less-loader": "^2.2.1",
+    "style-loader": "^0.13.0",
+    "url-loader": "^0.5.6",
+    "webpack": "^1.12.2"
+  }
+}

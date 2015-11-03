@@ -1,0 +1,170 @@
+@import "../../../vars.less";
+
+.house-detail {
+  background-color: @backgroundColor;
+  >div.big-img {
+    position: relative;
+    width: 640rem/@dpi;
+    height: 480rem/@dpi;
+    img {
+      width: 100%;
+    }
+    >div.num {
+      width: 80rem/@dpi;
+      height: 50rem/@dpi;
+      text-align: center;
+      background-color: rgba(0, 0,0, 0.8);
+      right: 0rem;
+      bottom: 0rem;
+      line-height: 50rem/@dpi;
+      position: absolute;
+      color: @white;
+      font-size: 26rem/@dpi;
+    }
+  }
+  >div.detail {
+    padding: 14rem/@dpi 0rem 10rem/@dpi 20rem/@dpi;
+    line-height: 70rem/@dpi;
+    background: @white;
+    margin-bottom: 20rem/@dpi;
+    >span {
+      font-size: 36rem/@dpi;
+      color: @black;
+    }
+    >div {
+      font-size: 24rem/@dpi;
+      >img {
+        width: 20rem/@dpi;
+        height: 24rem/@dpi;
+        display: inline-block;
+        margin-right: 10rem/@dpi;
+      }
+      >img.more {
+        width: 19rem/@dpi;
+        height: 27rem/@dpi;
+        float: right;
+        margin-top: 18rem/@dpi;
+        margin-right: 20rem/@dpi;
+      }
+      >span {
+         font-size: 24rem/@dpi;
+        &.first {
+          margin-right: 10rem/@dpi;
+          color: gray;
+        }
+        color: @black;
+      }
+    }
+  }
+  >div.rent {
+    padding: 20rem/@dpi 20rem/@dpi 0rem 20rem/@dpi;
+    background: @white;
+    line-height: 26rem/@dpi;
+    margin-bottom: 20rem/@dpi;
+    >span{
+      color: @red;
+      font-size: 26rem/@dpi;
+
+    }
+    >div.rent-item {
+      border-bottom: 2rem/@dpi dashed @borderColor;
+      padding: 20rem/@dpi 0rem;
+      line-height: 80rem/@dpi;
+      height: 80rem/@dpi;
+      >div.data {
+        vertical-align: top;
+        display: inline-block;
+        color: @black;
+        text-align: left;
+        line-height: 80rem/@dpi;
+        font-size: 24rem/@dpi;
+        >span {
+          color: @gray;
+          font-size: 20rem/@dpi;
+          &:first-child {
+            color: @black;
+            font-size: 24rem/@dpi;
+          }
+        }
+        &.area {
+          width: 170rem/@dpi;
+          padding-left: 30rem/@dpi;
+        }
+        &.price {
+          width: 250rem/@dpi;
+        }
+
+      }
+      >img {
+        width: 19rem/@dpi;
+        height: 27rem/@dpi;
+        margin-top: 28rem/@dpi;
+        float: right;
+      }
+
+    }
+    >div.more {
+      color: @red;
+      line-height: 80rem/@dpi;
+      text-align: center;
+    }
+
+  }
+  >section {
+    margin-bottom: 20rem/@dpi;
+    padding: 20rem/@dpi;
+    background-color: #fff;
+    color: @black;
+    >h3 {
+      color: @red;
+      margin-bottom: 3rem/@dpi;
+    }
+    >div {
+      line-height: 60rem/@dpi;
+      font-size: 26rem/@dpi;
+      text-indent:2em;
+      >span {
+          font-size: 26rem/@dpi;
+      }
+
+
+    }
+    >ul {
+      >li {
+        line-height: 60rem/@dpi;
+        >span {
+          display: inline-block;
+          text-align: left;
+          &:first-child {
+            line-height: 60rem/@dpi;
+            width: 170rem/@dpi;
+            color: @gray;
+          }
+
+        }
+      }
+    }
+
+  }
+  >footer {
+    text-align: center;
+    line-height: 100rem/@dpi;
+    background: @red;
+    color: @white;
+    font-size: 36rem/@dpi;
+    img {
+      margin-right: 10rem/@dpi;
+      font-size: 36rem/@dpi;
+    }
+    span {
+      font-size: 36rem/@dpi;
+      margin-right: 26rem/@dpi;
+      display: inline-block;
+    }
+    span.tel {
+      display: inline-block;
+
+    }
+  }
+
+}
