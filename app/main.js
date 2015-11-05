@@ -50,6 +50,8 @@ const rootRoute = {
     component: require('./components/App'),
     childRoutes: [
       require('./routes/HouseDetailRoute'),
+      require('./routes/EntrustRoute'),
+      require('./routes/ReleaseRoute')
 
     ]
   } ]

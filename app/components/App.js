@@ -11,7 +11,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Link to="/houseDetail/77">list</Link>
+        <Link to="/houseDetail/77">detail</Link>
+        <Link to="/entrust">entrust</Link>
+        <Link to="/release">release</Link>
         <div>
           {this.props.children}
         </div>
