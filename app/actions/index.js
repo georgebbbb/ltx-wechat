@@ -6,3 +6,11 @@ export function fetchBuilding(){
 export function fetchRent(){
   return {type:types.FETCH_RENT}
 }
+export function releaseUnit(query){
+  return {type:types.RELEASE_UNIT,query}
+
+}
+
+export function entrustUnit(){
+
+}

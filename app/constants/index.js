@@ -1,2 +1,3 @@
 export const FETCH_BUILDING = "FETCH_BUILDING";
 export const FETCH_RENT = "FETCH_RENT";
+export const RELEASE_UNIT="RELEASE_UNIT";

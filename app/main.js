@@ -6,9 +6,10 @@ import {Router, Route, Link ,IndexRoute,Redirect} from 'react-router'
 import { createStore, compose, combineReducers ,applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { createHistory } from 'history';
-import {fetchBuildingsMiddleware,fetchRentMiddleware} from './middleware'
+import {fetchBuildingsMiddleware,fetchRentMiddleware,releaseUnitMiddleware} from './middleware'
 import building from './reducers/building'
 import rent from './reducers/rent'
+import release from './reducers/release'
 import {
   ReduxRouter,
   routerStateReducer,
@@ -31,7 +32,8 @@ import {
 const reducer = combineReducers({
   router: routerStateReducer,
   building:building,
-  rent :rent
+  rent :rent,
+  release:release
 });
 
 const store = compose(
@@ -39,7 +41,8 @@ const store = compose(
   applyMiddleware(
   thunkMiddleware,
   fetchBuildingsMiddleware,
-  fetchRentMiddleware
+  fetchRentMiddleware,
+  releaseUnitMiddleware
   )
 )(createStore)(reducer);
 

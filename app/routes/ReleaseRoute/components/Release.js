@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
-
+import {releaseUnit} from '../../../actions'
 
 @connect((state)=>{
   return {}
@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
   (dispatch)=>{
 
   return {
-    fetchBuilding: () => dispatch(fetchBuilding())
+    releaseUnit: (query) => dispatch(releaseUnit(query))
   }})
 export default class  extends React.Component {
   constructor(props){
@@ -51,8 +51,10 @@ export default class  extends React.Component {
         error:false,
         errorContent:""
       })
-      
-
+      const query = Object.assign({},this.state)
+      delete query.error;
+      delete query.errorContent;
+      this.props.releaseUnit(query)
     }
 
 
@@ -85,7 +87,7 @@ export default class  extends React.Component {
       <label className="two">租金</label>
       <input onChange={this.handleChange.bind(this)} name="price" value={this.state.price}></input>
       <label>需求描述</label>
-      <textarea onChange={this.handleChange.bind(this)} name="describe" value={this.state.describe} placeholder="如：陆家嘴，带装修，进地铁"></textarea>
+      <textarea onChange={this.handleChange.bind(this)} name="des" value={this.state.des} placeholder="如：陆家嘴，带装修，进地铁"></textarea>
       <label className="two">称呼</label>
       <input onChange={this.handleChange.bind(this)} name="name" value={this.state.name}></input>
       <label>手机/座机</label>

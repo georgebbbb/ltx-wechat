@@ -14,5 +14,14 @@ export default {
       method: 'get',
       data:query
     })
+  },
+  //entrust 1 release 2
+  entrustAdd:function(query,type){
+    query.type=type;
+    return reqwest({
+      url: host+"/entrust/add",
+      method: 'post',
+      data:query
+    })
   }
 }

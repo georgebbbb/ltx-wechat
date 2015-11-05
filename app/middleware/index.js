@@ -24,10 +24,23 @@ export function fetchRentMiddleware({dispatch, getState }){
           curPage:state.curPage,
           buildingId:960
         }).then(data=>{
-          console.log(7777,data);
           action.rents=data.data.resultList;
           action.totalCount =data.data.totalCount;
           action.curPage=state.curPage+1;
+          next(action);
+        })
+      }else{
+        next(action);
+      }
+    }
+}
+
+export function releaseUnitMiddleware({dispatch, getState }){
+    return next => action => {
+      if(action.type ===types.RELEASE_UNIT){
+        console.log(6675);
+        api.entrustAdd(action.query,2).then((data)=>{
+          console.log(data);
           next(action);
         })
       }else{
