@@ -8,10 +8,41 @@ import position from '../../../img/map-xiangqing.png'
 import more from '../../../img/more.png'
 import phoneRed from '../../../img/phone.png'
 import phoneWhite from '../../../img/phone-white.png'
+import {fetchBuilding} from '../../../actions'
+import { connect } from 'react-redux';
+import Rent from './Rent';
 
+@connect((state)=>{
+  return {building:state.building}
+  },
+  (dispatch)=>{
+
+  return {
+    fetchBuilding: () => dispatch(fetchBuilding())
+  }})
 export default class  extends React.Component {
 
+
+
+  fetchBuilding(){
+    console.log(877,this.props);
+    this.props.fetchBuilding()
+  }
+
+  componentDidMount(){
+    console.log(888);
+    this.fetchBuilding()
+
+  }
+  componentDidUpdate(){
+
+
+  }
+
   render() {
+    const {building} = this.props;
+    console.log(building);
+
     return (
       <div className="house-detail">
         <div className="big-img">
@@ -25,7 +56,7 @@ export default class  extends React.Component {
           <div className="num">6套</div>
         </div>
         <div className="detail">
-          <span>东方国际大厦</span>
+          <span>{building.fullName}</span>
           <div>
             <img src={price}/>
             <span className="first">物业费</span>
@@ -33,44 +64,13 @@ export default class  extends React.Component {
           </div>
           <div>
             <img src={position}/>
-            <span className="first">浦东张江</span>
-            <span>碧波路500号</span>
+            <span className="first">{building.districtName}</span>
+
+            <span>{building.address}</span>
             <img className="more" src={more}/>
           </div>
         </div>
-        <div className="rent">
-          <span>
-            共18套在租房源
-          </span>
-          <div className="rent-item">
-            <SmallImg src={defaultImg} num={6}/>
-            <div className="data area">
-              <span>120</span>
-              <span>m <sup>2</sup></span>
-            </div>
-            <div className="data price">
-              <span>120</span>
-              <span>m <sup>2</sup>元.天</span>
-            </div>
-            <img src={more}/>
-          </div>
-          <div className="rent-item">
-            <SmallImg src={defaultImg} num={6}/>
-            <div className="data area">
-              <span>120</span>
-              <span>m <sup>2</sup></span>
-            </div>
-            <div className="data price">
-              <span>120</span>
-              <span>m <sup>2</sup>元.天</span>
-            </div>
-            <img src={more}/>
-          </div>
-          <div className="more">
-            查看更多
-          </div>
-
-        </div>
+        <Rent/>
         <section>
           <h3>项目描述</h3>
           <div>
@@ -92,7 +92,7 @@ export default class  extends React.Component {
           </ul>
         </section>
         <footer>
-          <img src={phoneWhite}/><span>预约电话</span><span className="tel">4400000000</span>
+          <img src={phoneWhite}/><span>预约电话</span><span className="tel">{building.contactMobile}</span>
         </footer>
 
       </div>

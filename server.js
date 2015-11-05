@@ -1,31 +1,20 @@
-'use strict';
-import express from 'express';
-import webpack from 'webpack';
-import config from './webpack.config.clientDev';
-import path from 'path';
+var config = require("./webpack.config.js");
+var webpack = require("webpack")
+var webpackDevServer=require("webpack-dev-server")
 
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
+config.entry.unshift("webpack-dev-server/client?http://localhost:8080", "webpack/hot/dev-server");
+var compiler = webpack(config);
+var server = new webpackDevServer(compiler, {
+  contentBase: "build",
+  hot: true,
+  inline: true,
+  proxy: {
+        '/api/*': {
+            target: 'http://120.55.125.236',
+            port: "8098",
+            secure: false
+        },
+    }
 
-const app = express();
-const compiler = webpack(config);
-
-app.use(webpackDevMiddleware(compiler, {
-  noInfo: true,
-  publicPath: config.output.publicPath
-}));
-
-app.use(webpackHotMiddleware(compiler));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
 });
-
-app.listen(3000, 'localhost', error => {
-  if (error) {
-    console.log(error);
-    return;
-  }
-
-  console.log('Listening at http://localhost:3000');
-});
+server.listen(8080);
