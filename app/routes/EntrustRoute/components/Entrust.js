@@ -32,9 +32,9 @@ export default class  extends React.Component {
       <div className="entrust">
         <label className="two">城市</label>
         <select>
-          <option>请选择</option>
-          <option>上海</option>
-          <option>苏州</option>
+        <option value="">请选择</option>
+        <option value="802">上海</option>
+        <option value="867">苏州</option>
         </select>
         <label className="two">面积</label>
         <input></input>
@@ -46,6 +46,9 @@ export default class  extends React.Component {
         <input></input>
         <label>手机/座机</label>
         <input></input>
+        <div className="error">
+          {this.state.error?<span>{this.state.errorContent}</span>:""}
+        </div>
         <div className="button">提交需求</div>
       </div>
     )

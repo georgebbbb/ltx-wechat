@@ -21,7 +21,7 @@ import {
 
 
 
-
+  //React.initializeTouchEvents(true);
 
 
 
