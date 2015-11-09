@@ -46,9 +46,7 @@ export default class  extends React.Component {
         <input></input>
         <label>手机/座机</label>
         <input></input>
-        <div className="error">
-          {this.state.error?<span>{this.state.errorContent}</span>:""}
-        </div>
+
         <div className="button">提交需求</div>
       </div>
     )
