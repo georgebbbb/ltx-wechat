@@ -10,6 +10,7 @@ import {fetchBuildingsMiddleware,fetchRentMiddleware,releaseUnitMiddleware} from
 import building from './reducers/building'
 import rent from './reducers/rent'
 import release from './reducers/release'
+import 'babel-core/polyfill';
 import {
   ReduxRouter,
   routerStateReducer,
