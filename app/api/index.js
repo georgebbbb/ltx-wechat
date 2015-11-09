@@ -20,7 +20,7 @@ export default {
     query.type=type;
     return reqwest({
       url: host+"/entrust/add",
-      method: 'post',
+      method: 'get',
       data:query
     })
   }

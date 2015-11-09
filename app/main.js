@@ -68,7 +68,6 @@ class Root extends Component {
       <div>
       <Provider store={store}>
         <ReduxRouter  routes={rootRoute}>
-
         </ReduxRouter>
       </Provider>
       </div>
