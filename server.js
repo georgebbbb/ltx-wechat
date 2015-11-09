@@ -15,8 +15,8 @@ var server = new webpackDevServer(compiler, {
   inline: true,
   proxy: {
         '/api/*': {
-            target: 'http://www.loutianxia.cn',
-            // port: "8098",
+            target: 'http://192.168.6.89',
+            port: "80",
             secure: false
         },
         '/getCityAreas2.action':{
