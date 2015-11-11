@@ -12,7 +12,7 @@ import {fetchRent} from '../../../actions'
   return {
     fetchRent: () => dispatch(fetchRent())
   }})
-export default class  extends React.Component {
+export  class Rent  extends React.Component {
 
   fetchRent(){
     this.props.fetchRent()

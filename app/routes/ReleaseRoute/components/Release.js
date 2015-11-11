@@ -10,7 +10,7 @@ import {releaseUnit} from '../../../actions'
   return {
     releaseUnit: (query) => dispatch(releaseUnit(query))
   }})
-export default class  extends React.Component {
+export class Relaese extends React.Component {
   constructor(props){
     super(props)
     this.state={

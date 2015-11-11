@@ -1,7 +1,6 @@
 import api from "../api";
 import * as types from '../constants';
 
-
 export function fetchBuildingsMiddleware({dispatch, getState }){
     return next => action => {
       if(action.type ===types.FETCH_BUILDING){
@@ -41,6 +40,38 @@ export function releaseUnitMiddleware({dispatch, getState }){
         console.log(6675);
         api.entrustAdd(action.query,2).then((data)=>{
           console.log(data);
+          next(action);
+        })
+      }else{
+        next(action);
+      }
+    }
+}
+
+export function fetchDistrictsMiddleware({dispatch, getState }){
+    return next => action => {
+
+      if(action.type ===types.FETCH_DISTRICTS){
+        const state = getState();
+        api.fetchDistricts({cityId:state.query.city.id}).then((data)=>{
+          action.districts=data
+          next(action);
+        })
+      }else{
+        next(action);
+      }
+    }
+}
+
+export function fetchCommsMiddleware({dispatch, getState }){
+    return next => action => {
+
+      if(action.type ===types.FETCH_COMMS){
+        console.log(11);
+        const state = getState();
+        api.fetchComms({districtId:state.query.city.district.id}).then((data)=>{
+
+          action.comms=data.data
           next(action);
         })
       }else{

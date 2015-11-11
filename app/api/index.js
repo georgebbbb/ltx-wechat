@@ -23,5 +23,19 @@ export default {
       method: 'get',
       data:query
     })
+  },
+  fetchDistricts: function(query) {
+  return reqwest({
+    url: host+"/map/findDistrictStat",
+    method: 'get',
+    data: query
+    })
+  },
+  fetchComms: function(query) {
+  return reqwest({
+    url: host+"/map/findCommStat",
+    method: 'get',
+    data: query
+    })
   }
 }

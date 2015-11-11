@@ -20,7 +20,7 @@ import Rent from './Rent';
   return {
     fetchBuilding: () => dispatch(fetchBuilding())
   }})
-export default class  extends React.Component {
+export  class HouseDetail  extends React.Component {
 
 
 

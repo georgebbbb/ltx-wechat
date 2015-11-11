@@ -6,20 +6,26 @@ import {Router, Route, Link ,IndexRoute,Redirect} from 'react-router'
 import { createStore, compose, combineReducers ,applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { createHistory } from 'history';
-import {fetchBuildingsMiddleware,fetchRentMiddleware,releaseUnitMiddleware} from './middleware'
+import {fetchBuildingsMiddleware,fetchRentMiddleware,releaseUnitMiddleware,fetchDistrictsMiddleware,fetchCommsMiddleware} from './middleware'
 import building from './reducers/building'
 import rent from './reducers/rent'
 import release from './reducers/release'
-import 'babel-core/polyfill';
+import query from './reducers/query';
+
+import app from './components/App.js'
 import {
   ReduxRouter,
   routerStateReducer,
   reduxReactRouter,
   pushState
 } from 'redux-router';
+import HouseDetailRoute from './routes/HouseDetailRoute';
+import EntrustRoute from './routes/EntrustRoute';
+import ReleaseRoute from './routes/ReleaseRoute';
+import BuildingListRoute from './routes/BuildingListRoute';
 
 
-
+console.log(BuildingListRoute);
 
 
 
@@ -34,7 +40,8 @@ const reducer = combineReducers({
   router: routerStateReducer,
   building:building,
   rent :rent,
-  release:release
+  release:release,
+  query:query
 });
 
 const store = compose(
@@ -43,33 +50,39 @@ const store = compose(
   thunkMiddleware,
   fetchBuildingsMiddleware,
   fetchRentMiddleware,
-  releaseUnitMiddleware
+  releaseUnitMiddleware,
+  fetchDistrictsMiddleware,
+  fetchCommsMiddleware
   )
 )(createStore)(reducer);
 
+
+
+
+
 const rootRoute = {
   component: 'div',
-  childRoutes: [ {
-    path: '/',
-    component: require('./components/App'),
-    childRoutes: [
-      require('./routes/HouseDetailRoute'),
-      require('./routes/EntrustRoute'),
-      require('./routes/ReleaseRoute')
-
-    ]
-  } ]
+  childRoutes: [
+    {
+     path: '/',
+     component: app,
+     childRoutes: [
+       HouseDetailRoute,
+       EntrustRoute,
+       ReleaseRoute,
+       BuildingListRoute
+     ]
+    }
+  ]
 }
-
 
 class Root extends Component {
   render() {
     return (
       <div>
-      <Provider store={store}>
-        <ReduxRouter  routes={rootRoute}>
-        </ReduxRouter>
-      </Provider>
+        <Provider store={store}>
+          <ReduxRouter  routes={rootRoute}></ReduxRouter>
+        </Provider>
       </div>
     );
   }
