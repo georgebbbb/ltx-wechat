@@ -1,17 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import AreaList from "./AreaList";
-import PriceList from "./PriceList"
-import DistrictList from "./DistrictList"
+import {AreaList} from "./AreaList";
+import {PriceList} from "./PriceList"
+import {DistrictList} from "./DistrictList"
 
 
 @connect((state)=>{
-  return {}
+  return {eee:777}
   },
   (dispatch)=>{
   return {
   }})
-export class Query extends React.Component {
+export default  class Query extends React.Component {
 
 
 
@@ -61,7 +61,7 @@ export class Query extends React.Component {
   }
 
   render() {
-
+    console.log(987,this.props);
     const dropDown=function(that){
         switch (that.state.dropDown) {
           case "district":

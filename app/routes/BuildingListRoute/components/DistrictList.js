@@ -35,6 +35,7 @@ export  class DistrictList  extends React.Component {
 
   componentDidMount(){
 
+    console.log(888,this.props);
     this.props.fetchDistricts()
 
   }

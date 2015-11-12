@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import './BuildingList.less';
-import Query from './Query';
+import {Query} from './Query';
 import defaultImg from '../../../img/default_bb.png';
 
 @connect((state)=>{
@@ -9,8 +9,8 @@ import defaultImg from '../../../img/default_bb.png';
   },
   (dispatch)=>{
   return {
-  }})
-export   class BuildingList extends React.Component {
+    }})
+export  class BuildingList extends React.Component {
 
   constructor(){
     super()

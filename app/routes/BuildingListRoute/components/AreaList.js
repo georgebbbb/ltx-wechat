@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
   (dispatch)=>{
   return {
   }})
-export class AreaList extends React.Component {
+export  class AreaList extends React.Component {
 
 
     constructor(){

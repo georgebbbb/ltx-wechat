@@ -12,6 +12,7 @@
   "author": "",
   "dependencies": {
     "babel-core": "^6.0.0",
+    "babel-preset-stage-1": "^6.1.2",
     "bootstrap": "^3.3.5",
     "history": "^1.12.5",
     "less": "^2.5.3",

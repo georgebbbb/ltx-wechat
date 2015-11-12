@@ -27,7 +27,7 @@ module.exports = {
       // query: {stage: 0},
       query: {
           cacheDirectory: true,
-          presets: ['stage-0','es2015', 'react'],
+          presets: ['stage-1','es2015', 'react'],
           // plugins: [
           //   "syntax-decorators",
           //   "transform-decorators"
