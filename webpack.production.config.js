@@ -46,7 +46,11 @@ var config = {
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
-    new HtmlWebpackPlugin(), //https://github.com/ampedandwired/html-webpack-plugin 此处可配置
+    new HtmlWebpackPlugin({
+      //inject: true,
+      template: 'index-template.html', 
+      //templateContent: "<div id='root'></div>"
+    }), //https://github.com/ampedandwired/html-webpack-plugin 此处可配置
     new webpack.HotModuleReplacementPlugin()
   ]
 };
