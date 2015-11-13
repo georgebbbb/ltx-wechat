@@ -4,7 +4,7 @@ import './BuildingList.less';
 import Query from './Query';
 import defaultImg from '../../../img/default_bb.png';
 import ImageLoader from 'react-imageloader'
-import {fetchBuildings}  from '../../../actions'
+import {fetchBuildings,addBuildings}  from '../../../actions'
 import Tappable from "react-tappable"
 @connect((state)=>{
   return {
@@ -13,27 +13,44 @@ import Tappable from "react-tappable"
   },
   (dispatch)=>{
   return {
-    fetchBuildings:()=>dispatch(fetchBuildings())
+    fetchBuildings:()=>dispatch(fetchBuildings()),
+    addBuildings  :()=>dispatch(addBuildings())
   }})
 export default  class BuildingList extends React.Component {
 
   constructor(){
     super()
+    this.isAdd=true;
   }
 
 
   componentDidMount(){
     this.props.fetchBuildings()
 
-    // setTimeout(()=>{\
+    // setTimeout(()=>{
+    //     this.props.addBuildings()
     // },3000)
+    const props = this.props
+    window.onscroll=(function(){
+      // console.log(document.body.scrollTop);
+      // console.log(this.refs.last.offsetTop)
+      // console.log(window.innerHeight);
+      if(window.innerHeight+document.body.scrollTop+300>this.refs.last.offsetTop&&this.isAdd){
+        this.isAdd=false;
+        this.props.addBuildings()
+      }
+    }).bind(this)
 
   }
 
 
 
   render() {
-    console.log(this.props.buildings);
+    console.log(99999,this.props.buildings);
+    const len = this.props.buildings.length;
+
+    this.isAdd=true;
+
     return (
       <div className="buildingList">
         <header>
@@ -44,10 +61,10 @@ export default  class BuildingList extends React.Component {
         </Query>
         <ul>
         {
-          this.props.buildings.map((ele)=>{
+          this.props.buildings.map((ele,i)=>{
 
 
-            return (  <li key={ele.buildingId}>
+            return (  <li key={i} ref={i+1==len?"last":i}>
                         <ImageLoader
                           src={ele.buildingImage}
                           wrapper={React.DOM.div}
@@ -78,6 +95,7 @@ export default  class BuildingList extends React.Component {
 
 
       </div>
+
     )
   }
 

@@ -37,9 +37,9 @@ export function fetchRentMiddleware({dispatch, getState }){
 export function releaseUnitMiddleware({dispatch, getState }){
     return next => action => {
       if(action.type ===types.RELEASE_UNIT){
-        console.log(6675);
+
         api.entrustAdd(action.query,2).then((data)=>{
-          console.log(data);
+
           next(action);
         })
       }else{
@@ -83,7 +83,6 @@ export function fetchBuildingsMiddleware({dispatch, getState }){
     return next => action => {
 
       if(action.type ===types.FETCH_BUILDINGS){
-        alert(111)
         const state = getState();
         const query ={
           maxPrice:state.query.price.max,

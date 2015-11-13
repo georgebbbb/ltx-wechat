@@ -38,5 +38,6 @@ export function fetchBuildings(){
   return {type:types.FETCH_BUILDINGS}
 }
 export function addBuildings(){
+  console.log(787665);
   return {type:types.ADD_BUILDINGS}
 }

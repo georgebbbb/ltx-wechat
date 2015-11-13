@@ -81,12 +81,12 @@ export default function area(state = initialState, action) {
           })
     case ADD_BUILDINGS:
       return Object.assign({},state,{
-        price:action.curPage
+        curPage:action.curPage
       })
 
     case FETCH_BUILDINGS:
         return Object.assign({},state,{
-          price:action.curPage
+          curPage:action.curPage
         })
   default:
     return state;

@@ -14,7 +14,10 @@ export default function area(state = initialState, action) {
     });
   case ADD_BUILDINGS:
     return Object.assign({}, state, {
-      buildings:action.buildings
+      buildings:[
+        ...state.buildings,
+        ...action.buildings
+      ]
     });
 
   default:
