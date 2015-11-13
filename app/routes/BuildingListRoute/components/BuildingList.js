@@ -25,8 +25,8 @@ export default  class BuildingList extends React.Component {
   componentDidMount(){
     this.props.fetchBuildings()
 
-    setTimeout(()=>{\
-    },3000)
+    // setTimeout(()=>{\
+    // },3000)
 
   }
 

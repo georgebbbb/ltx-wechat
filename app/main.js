@@ -1,6 +1,5 @@
 import 'babel-core/polyfill';
 import React    from 'react';
-
 import {Component} from 'react';
 import {render} from "react-dom";
 import { Provider, connect } from 'react-redux';
@@ -34,7 +33,7 @@ import ReleaseRoute from './routes/ReleaseRoute';
 import BuildingListRoute from './routes/BuildingListRoute';
 
 
-console.log(BuildingListRoute);
+
 
 
 
