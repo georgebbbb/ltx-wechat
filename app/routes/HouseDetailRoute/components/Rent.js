@@ -12,7 +12,7 @@ import {fetchRent} from '../../../actions'
   return {
     fetchRent: () => dispatch(fetchRent())
   }})
-export  class Rent  extends React.Component {
+export default  class Rent  extends React.Component {
 
   fetchRent(){
     this.props.fetchRent()
@@ -31,7 +31,6 @@ export  class Rent  extends React.Component {
 
 
     const {rent} = this.props
-    console.log(rent.rents);
     const rents = rent.rents.map((e)=>{
       return (
         <div  className="rent-item">

@@ -8,9 +8,9 @@ var request = require('request');
 var app = express();
 
     app.get("/api/*",function(req, res){
-      var path = req.path;
-      console.log(path);
+      var path = req.originalUrl;
       request.get('http://120.55.125.236:8098'+path,
+        { form: req.query },
         function (error, response, body) {
         if (!error && response.statusCode == 200) {
           var obj = JSON.parse(body)

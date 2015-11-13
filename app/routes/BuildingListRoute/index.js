@@ -1,5 +1,5 @@
 
-console.log(888,require('./components/BuildingList'));
+
 
 module.exports = {
   path: 'buildingList',

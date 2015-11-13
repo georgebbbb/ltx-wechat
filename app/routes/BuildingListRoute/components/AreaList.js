@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux';
-
-
-
+import Tappable from "react-tappable"
+import {setArea}  from '../../../actions'
+import {fetchBuildings}  from '../../../actions'
 @connect((state)=>{
   return {
 
@@ -10,8 +10,10 @@ import { connect } from 'react-redux';
   },
   (dispatch)=>{
   return {
+    setArea:(min,max)=>dispatch(setArea(min,max)),
+      fetchBuildings:()=>dispatch(fetchBuildings())
   }})
-export class AreaList extends React.Component {
+export default class AreaList extends React.Component {
 
 
     constructor(){
@@ -60,29 +62,27 @@ export class AreaList extends React.Component {
 
     }
 
-  areaChange(e){
-    console.log(978);
+  areaChange(ele,e){
+
     this.props.onChange("area",e.target.innerText)
+    ele.max=ele.max=="不限"?null:ele.max;
+    this.props.setArea(ele.min,ele.max)
+    this.props.fetchBuildings()
   }
 
   render() {
     const areasEle = this.areas.map((ele,i)=>{
       if(i==0){
-        return(<li key={i}  onTouchEnd={this.areaChange.bind(this)} minArea={ele.min} maxArea={ele.max}>
-                  不限
-                </li>);
+        return(
+                <Tappable key={i} component="li"   onTap={this.areaChange.bind(this,ele)}>不限</Tappable>
+              );
       }else if(i==1){
         return(
-        <li key={i} onTouchEnd={this.areaChange.bind(this)} minArea={ele.min} maxArea={ele.max}>
-                  100m<sup>2</sup>以下
-                </li>)
+          <Tappable key={i} component="li"   onTap={this.areaChange.bind(this,ele)}>100㎡以下</Tappable>
+        )
       }else {
         return (
-          <li key={i} onTouchEnd={this.areaChange.bind(this)} minArea={ele.min} maxArea={ele.max}>
-          {
-            ele.max=='不限'?(ele.min==0?"不限":"2000+"):ele.min+"-"+ele.max
-          }m<sup>2</sup>
-          </li>
+            <Tappable key={i} component="li"   onTap={this.areaChange.bind(this,ele)}>{ele.max=='不限'?(ele.min==0?"不限":"2000+"):ele.min+"-"+ele.max}㎡</Tappable>
         )
       }
 

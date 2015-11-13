@@ -3,14 +3,19 @@ import { connect } from 'react-redux';
 import './BuildingList.less';
 import Query from './Query';
 import defaultImg from '../../../img/default_bb.png';
-
+import ImageLoader from 'react-imageloader'
+import {fetchBuildings}  from '../../../actions'
+import Tappable from "react-tappable"
 @connect((state)=>{
-  return {}
+  return {
+    buildings:state.building.buildings
+  }
   },
   (dispatch)=>{
   return {
+    fetchBuildings:()=>dispatch(fetchBuildings())
   }})
-export   class BuildingList extends React.Component {
+export default  class BuildingList extends React.Component {
 
   constructor(){
     super()
@@ -18,17 +23,17 @@ export   class BuildingList extends React.Component {
 
 
   componentDidMount(){
+    this.props.fetchBuildings()
 
+    setTimeout(()=>{\
+    },3000)
 
   }
-  componentDidUpdate(){
 
-
-  }
 
 
   render() {
-
+    console.log(this.props.buildings);
     return (
       <div className="buildingList">
         <header>
@@ -38,19 +43,40 @@ export   class BuildingList extends React.Component {
         <Query>
         </Query>
         <ul>
-          <li>
-            <img src={defaultImg}></img>
-            <footer>
-              333
-            </footer>
-          </li>
-          <li>
-            <img src={defaultImg}></img>
-            <footer>
-              333
-            </footer>
-          </li>
+        {
+          this.props.buildings.map((ele)=>{
+
+
+            return (  <li key={ele.buildingId}>
+                        <ImageLoader
+                          src={ele.buildingImage}
+                          wrapper={React.DOM.div}
+                          preloader={()=>{
+                            return <img src={defaultImg}></img>
+                          }}>
+                        </ImageLoader>
+                        <footer>
+                          <div>
+                            <span>{ele.buildingName}</span>
+                            <span className="fr sm">套房源</span>
+                            <span className="fr">{ele.suitableNum}</span>
+                          </div>
+                          <div>
+                            <span className="sm">{ele.buildingAddress}</span>
+                            <span className="fr sm">元m<sup>2</sup>.天</span>
+                            <span className="fr">{ele.averageRent}</span>
+                          </div>
+                        </footer>
+                      </li>)
+          })
+        }
         </ul>
+
+
+
+
+
+
       </div>
     )
   }

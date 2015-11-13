@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
   return {
     fetchBuilding: () => dispatch(fetchBuilding())
   }})
-export class Entrust  extends React.Component {
+export  default class Entrust  extends React.Component {
 
 
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import AreaList from "./AreaList";
 import PriceList from "./PriceList"
 import DistrictList from "./DistrictList"
-
+import Tappable from "react-tappable"
 
 @connect((state)=>{
   return {}
@@ -11,7 +11,7 @@ import DistrictList from "./DistrictList"
   (dispatch)=>{
   return {
   }})
-export class Query extends React.Component {
+export default class Query extends React.Component {
 
 
 
@@ -26,6 +26,7 @@ export class Query extends React.Component {
     }
 
   selectChange(e){
+
     this.setState({
       dropDown:e.target.getAttribute("name"),
       isOpen:true
@@ -86,7 +87,7 @@ export class Query extends React.Component {
           <div onTouchEnd={this.selectChange.bind(this)} name="price">
             {this.state.priceName||"租金"}
           </div>
-          {this.state.isOpen?<div className="dropDown" onTouchEnd={this.closeDropDown.bind(this)}>{dropDown}</div>:null}
+          {this.state.isOpen?<Tappable component="div" className="dropDown" onTap={this.closeDropDown.bind(this)}>{dropDown}</Tappable>:null}
         </div>)
   }
 

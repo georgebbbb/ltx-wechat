@@ -34,7 +34,9 @@ div.buildingList {
 
   }
 
-  div.query {
+  >div.query {
+  vertical-align: top;
+  white-space:nowrap;
    height: 70rem/@dpi;
    font-size: 0px;
    border-bottom: 2rem/@dpi solid @borderColor;
@@ -58,11 +60,12 @@ div.buildingList {
     //  height: 480rem/@dpi;
     background-color: rgba(0,0,0,0.8);
     width: 100%;
-    top: 170rem/@dpi;
+    top: 190rem/@dpi;
     left: 0rem;
     bottom: 0rem;
     padding: 0px;
     font-size: 24rem/@dpi;
+    border: 0rem;
     >div{
       height: 480rem/@dpi;
       font-size: 0rem;
@@ -77,6 +80,7 @@ div.buildingList {
           height: 78rem/@dpi;
           line-height: 78rem/@dpi;
           border-bottom: 2rem/@dpi solid @borderColor;
+
           &:last-child {
             border-bottom: 0rem;
           }
@@ -117,17 +121,36 @@ div.buildingList {
       height: 360rem/@dpi;
       position: relative;
       overflow: hidden;
-      >img {
+      >div{
         margin-top: -60rem/@dpi;
+        >img {
+
         width: 100%;
-      }
+        }
+
+        }
       >footer {
-        height: 130rem/@dpi;
+        height: 80rem/@dpi;
         background:-webkit-gradient(linear,  0 100%,0 0, from(rgba(0,0,0,0.5)), to(rgba(255, 255, 255,0)));
         bottom: 0rem;
         left: 0rem;
         position: absolute;
         width: 100%;
+        padding-top: 50rem/@dpi;
+        >div {
+          padding: 7rem/@dpi 20rem/@dpi;
+          line-height:26rem/@dpi;
+          height: 26rem/@dpi;
+          font-size: 26rem/@dpi;
+          color: @white;
+          >span.sm {
+            font-size: 22rem/@dpi;
+            color:#c8c8c8;
+          }
+          >span.fr {
+            float: right;
+          }
+        }
       }
 
 

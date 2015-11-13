@@ -37,5 +37,12 @@ export default {
     method: 'get',
     data: query
     })
+  },
+  fetchBuildings: function(query) {
+    return  reqwest({
+      url: host+'/building/list',
+      method: 'get',
+      data: query,
+    })
   }
 }

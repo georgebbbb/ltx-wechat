@@ -4,7 +4,7 @@ import './SmallImg.less'
 
 
 
-export  class SmallImg extends React.Component {
+export default  class SmallImg extends React.Component {
 
   render() {
     return (

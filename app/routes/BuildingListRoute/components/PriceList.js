@@ -2,15 +2,18 @@ import React from 'react'
 import { connect } from 'react-redux';
 import './BuildingList.less';
 import Query from './Query'
-
-
+import Tappable from "react-tappable"
+import {setPrice}  from '../../../actions'
+import {fetchBuildings}  from '../../../actions'
 @connect((state)=>{
   return {}
   },
   (dispatch)=>{
   return {
+     setPrice:(min,max)=>dispatch(setPrice(min,max)),
+    fetchBuildings:()=>dispatch(fetchBuildings())
   }})
-export  class PriceList  extends React.Component {
+export default  class PriceList  extends React.Component {
 
   constructor(){
     super()
@@ -60,7 +63,12 @@ export  class PriceList  extends React.Component {
       ];
   }
 
-  priceChange(e){
+  priceChange(ele,e){
+
+    this.props.onChange("price",e.target.innerText)
+    ele.max=ele.max=="不限"?null:ele.max;
+    this.props.setPrice(ele.min,ele.max)
+    this.props.fetchBuildings()
 
   }
 
@@ -69,25 +77,24 @@ export  class PriceList  extends React.Component {
 
   render() {
     const pricesEle = this.prices.map((ele,i)=>{
+
       if(i==0){
+
         return (
-          <li key={i} onTouchEnd={this.priceChange.bind(this)} minPrice={ele.min} maxPrice={ele.max}>
-            不限
-          </li>
+
+            <Tappable   key={i} component="li" onTap={this.priceChange.bind(this,ele)}>不限</Tappable>
+
         )
 
       }else if(i==1){
         return (
-          <li key={i} onTouchEnd={this.priceChange.bind(this)} minPrice={ele.min} maxPrice={ele.max}>
-            1m<sup>2</sup>以下
-          </li>
+          <Tappable   key={i} component="li" onTap={this.priceChange.bind(this,ele)}>1m㎡以下</Tappable>
         )
 
       }else{
         return (
-          <li key={i} onTouchEnd={this.priceChange.bind(this)} minPrice={ele.min} maxPrice={ele.max}>
-          {ele.max=='不限'?(ele.min==0?"不限":"2000+"):ele.min+"-"+ele.max  }m<sup>2</sup>
-          </li>
+          <Tappable   key={i} component="li" onTap={this.priceChange.bind(this,ele)}>{ele.max=='不限'?(ele.min==0?"不限":"2000+"):ele.min+"-"+ele.max  }㎡</Tappable>
+
         )
       }
 

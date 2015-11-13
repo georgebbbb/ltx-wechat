@@ -1,4 +1,4 @@
-import {FETCH_DISTRICTS,SET_CURRENT_DISTRICT,FETCH_COMMS} from '../constants';
+import {FETCH_DISTRICTS,SET_CURRENT_DISTRICT,FETCH_COMMS,SET_CURRENT_COMM,SET_AREA,SET_PRICE} from '../constants';
 const initialState={
   city:{
     id:802,
@@ -6,13 +6,21 @@ const initialState={
     name:"上海",
     district:{
       comms:[],
-      id:0
+      id:null,
+      comm:{
+        id:null
+      }
     }
-  }
-
-
-
-
+  },
+  area:{
+    min:0,
+    max:null,
+  },
+  price:{
+    min:0,
+    max:null,
+  },
+  curPage:1
 }
 
 export default function area(state = initialState, action) {
@@ -43,7 +51,43 @@ export default function area(state = initialState, action) {
             comms:action.comms
           }
         }
+      });
+    case SET_CURRENT_COMM:
+        return Object.assign({},state,{
+          city:{
+            ...state.city,
+            district:{
+              ...state.city.district,
+              comm:{
+                ...state.city.district.comm,
+                id:action.id
+              }
+            }
+          }
+        })
+    case SET_AREA:
+        return Object.assign({},state,{
+          area:{
+            min:action.min,
+            max:action.max
+          }
+        })
+    case SET_PRICE:
+          return Object.assign({},state,{
+            price:{
+              min:action.min,
+              max:action.max
+            }
+          })
+    case ADD_BUILDINGS:
+      return Object.assign({},state,{
+        price:action.curPage
       })
+
+    case FETCH_BUILDINGS:
+        return Object.assign({},state,{
+          price:action.curPage
+        })
   default:
     return state;
   }

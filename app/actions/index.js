@@ -19,9 +19,24 @@ export function fetchDistricts(){
   return {type:types.FETCH_DISTRICTS}
 }
 export function setCurrentDistrict(id){
-  console.log(999,id);
   return {type:types.SET_CURRENT_DISTRICT,id}
 }
 export function fetchComms(){
   return {type:types.FETCH_COMMS}
+}
+export function setCurrentComm(id){
+  return {type:types.SET_CURRENT_COMM,id}
+}
+export function setArea(min,max){
+  return {type:types.SET_AREA,min,max}
+}
+export function setPrice(min,max){
+  return {type:types.SET_PRICE,min,max}
+}
+
+export function fetchBuildings(){
+  return {type:types.FETCH_BUILDINGS}
+}
+export function addBuildings(){
+  return {type:types.ADD_BUILDINGS}
 }
