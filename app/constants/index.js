@@ -1,8 +1,6 @@
 export const FETCH_BUILDING = "FETCH_BUILDING";
 export const FETCH_BUILDINGS = "FETCH_BUILDINGS";
 export const ADD_BUILDINGS = "ADD_BUILDINGS";
-
-
 export const FETCH_RENT = "FETCH_RENT";
 export const RELEASE_UNIT="RELEASE_UNIT";
 export const FETCH_DISTRICTS="FETCH_DISTRICTS";
