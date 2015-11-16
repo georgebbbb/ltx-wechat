@@ -26,6 +26,7 @@ var server = new webpackDevServer(compiler, {
   contentBase: "build",
   hot: true,
   inline: true,
+  historyApiFallback: true,
   //  headers: { 'Access-Control-Allow-Origin': '*' },
   proxy: {
         // '/api/*': {
@@ -38,12 +39,10 @@ var server = new webpackDevServer(compiler, {
             // port: "80",
             secure: false
         },
-        // '/getCityAreas2.action':{
-        //   target: 'http://www.iwjw.com/',
-        //   secure: false
-        // }
 
     }
 
 });
+
+// console.log(server);
 server.listen(8080);

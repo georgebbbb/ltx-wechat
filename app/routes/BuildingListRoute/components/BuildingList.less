@@ -16,6 +16,7 @@ div.buildingList {
      border-radius: 8rem/@dpi;
      font-size: 24rem/@dpi;
      display: inline-block;
+
      margin-right: 14rem/@dpi;
      text-align: center;
     }
@@ -36,7 +37,7 @@ div.buildingList {
 
   >div.query {
   vertical-align: top;
-  white-space:nowrap;
+    white-space:nowrap;
    height: 70rem/@dpi;
    font-size: 0px;
    border-bottom: 2rem/@dpi solid @borderColor;
@@ -46,7 +47,7 @@ div.buildingList {
      padding:15rem/@dpi 20rem/@dpi;
      display: inline-block;
      font-size: 24rem/@dpi;
-     line-height: 36rem/@dpi;
+     line-height: 40rem/@dpi;
      width: 171rem/@dpi;
      &:first-child {
        border-left: 0px;
@@ -54,71 +55,16 @@ div.buildingList {
      }
 
    }
-   >div.dropDown {
-     z-index: 999;
-     position: absolute;
-    //  height: 480rem/@dpi;
-    background-color: rgba(0,0,0,0.8);
-    width: 100%;
-    top: 190rem/@dpi;
-    left: 0rem;
-    bottom: 0rem;
-    padding: 0px;
-    font-size: 24rem/@dpi;
-    border: 0rem;
-    >div{
-      height: 480rem/@dpi;
-      font-size: 0rem;
-      >ul{
-        height: 400rem/@dpi;
-        overflow: auto;
-        background-color: @white;
 
-        >li{
-          font-size: 24rem/@dpi;
-          padding-left: 20rem/@dpi;
-          height: 78rem/@dpi;
-          line-height: 78rem/@dpi;
-          border-bottom: 2rem/@dpi solid @borderColor;
-
-          &:last-child {
-            border-bottom: 0rem;
-          }
-        }
-        &.district {
-          display: inline-block;
-          overflow: auto;
-          width: 209rem/@dpi;
-          border-right: 2rem/@dpi solid @borderColor;
-          >li {
-            height: 80rem/@dpi;
-            border: 0rem;
-          }
-        }
-        &.comm {
-          display: inline-block;
-          overflow: auto;
-          width: 429rem/@dpi;
-        }
-
-      }
-      footer {
-        height: 78rem/@dpi;
-        border-top: 2rem/@dpi solid @borderColor;
-        background-color: @backgroundColor;
-        padding-left: 20rem/@dpi;
-      }
-    }
-
-
-   }
 
 
 
   }
   >ul {
+    overflow: auto;
+    position: relative;
     >li {
-      height: 360rem/@dpi;
+      height: 400rem/@dpi;
       position: relative;
       overflow: hidden;
       >div{
@@ -157,7 +103,68 @@ div.buildingList {
 
     }
 
+    >div.dropDown {
+      z-index: 999;
+      position: absolute;
+     //  height: 480rem/@dpi;
+     background-color: rgba(0,0,0,0.8);
+     width: 100%;
+     top: 0rem/@dpi;
+     left: 0rem;
 
+     height: 100%;
+     bottom: 0rem;
+     padding: 0px;
+     font-size: 24rem/@dpi;
+     border: 0rem;
+     >div{
+       height: 480rem/@dpi;
+       font-size: 0rem;
+       >ul{
+         height: 400rem/@dpi;
+         overflow: auto;
+         background-color: @white;
+
+         >li{
+           font-size: 24rem/@dpi;
+           padding-left: 20rem/@dpi;
+           height: 78rem/@dpi;
+           line-height: 78rem/@dpi;
+           border-bottom: 2rem/@dpi solid @borderColor;
+
+           // &:last-child {
+           //   border-bottom: 0rem;
+           // }
+         }
+         &.district {
+           vertical-align: top;
+           display: inline-block;
+           overflow: auto;
+           width: 211rem/@dpi;
+           border-right: 2rem/@dpi solid @borderColor;
+           >li {
+             height: 80rem/@dpi;
+             border: 0rem;
+           }
+         }
+         &.comm {
+           vertical-align: top;
+           display: inline-block;
+           overflow: auto;
+           width: 427rem/@dpi;
+         }
+
+       }
+       footer {
+         height: 78rem/@dpi;
+         border-top: 2rem/@dpi solid @borderColor;
+         background-color: @backgroundColor;
+         padding-left: 20rem/@dpi;
+       }
+     }
+
+
+    }
   }
 
 }

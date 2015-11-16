@@ -25,12 +25,12 @@ export default  class HouseDetail  extends React.Component {
 
 
   fetchBuilding(){
-    console.log(877,this.props);
+
     this.props.fetchBuilding()
   }
 
   componentDidMount(){
-    console.log(888);
+
     this.fetchBuilding()
 
   }

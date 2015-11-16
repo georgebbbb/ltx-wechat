@@ -4,13 +4,15 @@ var webpack = require("webpack")
 var node_modules = path.resolve(__dirname, 'node_modules');
 // var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
 var pathToReactRouter = path.resolve(node_modules, 'react-router/umd/ReactRouter.min.js');
-
+var WebpackMd5Hash = require('webpack-md5-hash');
 module.exports = {
 
-  entry: ['webpack/hot/dev-server', path.resolve(__dirname, 'app/main.js')],
+    entry: ['webpack/hot/dev-server', path.resolve(__dirname, 'app/main.js')],
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: 'bundle.js',
+        // filename: 'bundle.js',
+        chunkFilename: "[chunkhash].[id].chunk.js",
+        filename: "[name].js",
     },
     //暂时先不用了
     // resolve: {
@@ -48,7 +50,8 @@ module.exports = {
        loader: 'url-loader?limit=8192'}]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new WebpackMd5Hash()
   ]
 
 };

@@ -88,12 +88,12 @@ export default  class PriceList  extends React.Component {
 
       }else if(i==1){
         return (
-          <Tappable   key={i} component="li" onTap={this.priceChange.bind(this,ele)}>1m㎡以下</Tappable>
+          <Tappable   key={i} component="li" onTap={this.priceChange.bind(this,ele)}>1元/㎡.天以下</Tappable>
         )
 
       }else{
         return (
-          <Tappable   key={i} component="li" onTap={this.priceChange.bind(this,ele)}>{ele.max=='不限'?(ele.min==0?"不限":"2000+"):ele.min+"-"+ele.max  }㎡</Tappable>
+          <Tappable   key={i} component="li" onTap={this.priceChange.bind(this,ele)}>{ele.max=='不限'?(ele.min==0?"不限":"2000+"):ele.min+"-"+ele.max  }元/㎡.天</Tappable>
 
         )
       }
