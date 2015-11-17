@@ -20,7 +20,6 @@ import Rent from './Rent';
   }
   },
   (dispatch)=>{
-
   return {
     fetchBuilding: () => dispatch(fetchBuilding()),
     setCurrentBuilding:(id)=> dispatch(setCurrentBuilding(id)),
