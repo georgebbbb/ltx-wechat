@@ -38,6 +38,13 @@ export function fetchBuildings(){
   return {type:types.FETCH_BUILDINGS}
 }
 export function addBuildings(){
-  console.log(787665);
   return {type:types.ADD_BUILDINGS}
+}
+
+export function setCurrentBuilding(id){
+  return {type:types.SET_CURRENT_BUILDING,id}
+}
+
+export function clearBuilding(){
+  return {type:types.CLEAR_BUILDING}
 }

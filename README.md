@@ -18,5 +18,10 @@ css样式部分：
 .ovfHiden{overflow: hidden;height: 100%;}
 
 jquery部分：
-$('html,body').addClass('ovfHiden'); //使网页不可滚动
+$('html,body').addClass('ovfHiden'); //使网页不可滚动 有问题ios fixed
 $('html,body').removeClass('ovfHiden'); //使网页恢复可滚动
+
+
+
+//得看看
+document.documentElement

@@ -31,9 +31,10 @@ export default  class Rent  extends React.Component {
 
 
     const {rent} = this.props
+
     const rents = rent.rents.map((e)=>{
       return (
-        <div  className="rent-item">
+        <div key={e.groupId} className="rent-item">
           <SmallImg src={e.unitImage} num={6}/>
           <div className="data area">
             <span>{e.unitArea}</span>

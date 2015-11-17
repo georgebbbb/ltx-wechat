@@ -15,7 +15,6 @@ import {fetchBuildings}  from '../../../actions'
   }})
 export default class AreaList extends React.Component {
 
-
     constructor(){
       super()
       this.areas=[
@@ -60,29 +59,43 @@ export default class AreaList extends React.Component {
       max:"不限"
       }]
 
+      setTimeout((()=>{
+
+
+
+        this.__areaChange=function(ele,e){
+          this.props.onChange("area",e.target.innerText)
+          ele.max=ele.max=="不限"?null:ele.max;
+          this.props.setArea(ele.min,ele.max)
+          this.props.fetchBuildings()
+        }
+      }).bind(this),600);
     }
 
-  areaChange(ele,e){
+  _areaChange(ele,e){
 
-    this.props.onChange("area",e.target.innerText)
-    ele.max=ele.max=="不限"?null:ele.max;
-    this.props.setArea(ele.min,ele.max)
-    this.props.fetchBuildings()
+
+    if(this.__areaChange){
+      this.__areaChange(ele,e)
+    }else {
+      e.stopPropagation();
+    }
+
   }
 
   render() {
     const areasEle = this.areas.map((ele,i)=>{
       if(i==0){
         return(
-                <Tappable key={i} component="li"   onTap={this.areaChange.bind(this,ele)}>不限</Tappable>
+                <Tappable key={i} component="li"   onTap={this._areaChange.bind(this,ele)}>不限</Tappable>
               );
       }else if(i==1){
         return(
-          <Tappable key={i} component="li"   onTap={this.areaChange.bind(this,ele)}>100㎡以下</Tappable>
+          <Tappable key={i} component="li"   onTap={this._areaChange.bind(this,ele)}>100㎡以下</Tappable>
         )
       }else {
         return (
-            <Tappable key={i} component="li"   onTap={this.areaChange.bind(this,ele)}>{ele.max=='不限'?(ele.min==0?"不限":"2000+"):ele.min+"-"+ele.max}㎡</Tappable>
+            <Tappable key={i} component="li"   onTap={this._areaChange.bind(this,ele)}>{ele.max=='不限'?(ele.min==0?"不限":"2000+"):ele.min+"-"+ele.max}㎡</Tappable>
         )
       }
 

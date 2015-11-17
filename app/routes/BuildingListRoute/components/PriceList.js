@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import './BuildingList.less';
-import Query from './Query'
 import Tappable from "react-tappable"
 import {setPrice}  from '../../../actions'
 import {fetchBuildings}  from '../../../actions'
@@ -61,18 +60,31 @@ export default  class PriceList  extends React.Component {
         max:'不限'
       }
       ];
+
+      setTimeout((()=>{
+        this.__priceChange=function(ele,e){
+
+          this.props.onChange("price",e.target.innerText)
+          ele.max=ele.max=="不限"?null:ele.max;
+          this.props.setPrice(ele.min,ele.max)
+          this.props.fetchBuildings()
+
+        }
+
+      }).bind(this),600)
   }
 
-  priceChange(ele,e){
 
-    this.props.onChange("price",e.target.innerText)
-    ele.max=ele.max=="不限"?null:ele.max;
-    this.props.setPrice(ele.min,ele.max)
-    this.props.fetchBuildings()
+
+  _priceChange(ele,e){
+
+    if(this.__priceChange){
+      this.__priceChange(ele,e)
+    }else {
+      e.stopPropagation()
+    }
 
   }
-
-
 
 
   render() {
@@ -82,18 +94,18 @@ export default  class PriceList  extends React.Component {
 
         return (
 
-            <Tappable   key={i} component="li" onTap={this.priceChange.bind(this,ele)}>不限</Tappable>
+            <Tappable   key={i} component="li" onTap={this._priceChange.bind(this,ele)}>不限</Tappable>
 
         )
 
       }else if(i==1){
         return (
-          <Tappable   key={i} component="li" onTap={this.priceChange.bind(this,ele)}>1元/㎡.天以下</Tappable>
+          <Tappable   key={i} component="li" onTap={this._priceChange.bind(this,ele)}>1元/㎡.天以下</Tappable>
         )
 
       }else{
         return (
-          <Tappable   key={i} component="li" onTap={this.priceChange.bind(this,ele)}>{ele.max=='不限'?(ele.min==0?"不限":"2000+"):ele.min+"-"+ele.max  }元/㎡.天</Tappable>
+          <Tappable   key={i} component="li" onTap={this._priceChange.bind(this,ele)}>{ele.max=='不限'?(ele.min==0?"不限":"9+"):ele.min+"-"+ele.max  }元/㎡.天</Tappable>
 
         )
       }

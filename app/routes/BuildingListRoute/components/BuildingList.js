@@ -6,13 +6,16 @@ import ImageLoader from 'react-imageloader'
 import {fetchBuildings,addBuildings}  from '../../../actions'
 import Tappable from "react-tappable"
 import AreaList from "./AreaList";
-import PriceList from "./PriceList"
-import DistrictList from "./DistrictList"
-
+import PriceList from "./PriceList";
+import DistrictList from "./DistrictList";
+import arrow from "../../../img/arrow.png";
+import {Link} from 'react-router';
 
 @connect((state)=>{
   return {
-    buildings:state.building.buildings
+    buildings:state.building.buildings,
+    isBottom:state.building.isBottom,
+    building:state.building.building
   }
   },
   (dispatch)=>{
@@ -30,20 +33,26 @@ export default  class BuildingList extends React.Component {
       districtName:null,
       areaName:null,
       priceName:null,
-      top:0,
+      top:300,
       height:700
     }
+
   }
 
 
   componentDidMount(){
-    this.props.fetchBuildings()
+    //若果是会退回去的
+    if(this.props.buildings.length>0){
+        this.refs.list.scrollTop=this.refs[this.props.building.id].parentElement.offsetTop;
+    }else {
+      this.props.fetchBuildings()
+    }
     this.setState({
       height : window.innerHeight-this.refs.list.offsetTop
     })
     this.refs.list.onscroll=(function(){
-      // console.log(this.refs.list.scrollTop);
-        if(window.innerHeight+this.refs.list.scrollTop+500>this.refs.last.offsetTop&&this.isAdd){
+
+        if(window.innerHeight+this.refs.list.scrollTop+300>this.refs.list.lastChild.offsetTop&&this.isAdd){
           this.isAdd=false;
           this.props.addBuildings()
         }
@@ -53,8 +62,6 @@ export default  class BuildingList extends React.Component {
 
 
   render() {
-
-
     const dropDown=function(that){
         switch (that.state.dropDown) {
           case "district":
@@ -79,14 +86,14 @@ export default  class BuildingList extends React.Component {
           <input placeholder="请输入楼盘名称"/>
         </header>
         <div className="query" ref="query">
-          <div onTouchEnd={this._selectChange.bind(this,"district")}>
-            {this.state.districtName||"区域"}
+          <div onTouchStart={this._selectChange.bind(this,"district")}>
+            {this.state.districtName||"区域"} <img src={arrow}></img>
           </div>
-          <div onTouchEnd={this._selectChange.bind(this,"area")}>
-            {this.state.areaName||"面积"}
+          <div onTouchStart={this._selectChange.bind(this,"area")}>
+            {this.state.areaName||"面积"}  <img src={arrow}></img>
           </div>
-          <div onTouchEnd={this._selectChange.bind(this,"price")}>
-            {this.state.priceName||"租金"}
+          <div onTouchStart={this._selectChange.bind(this,"price")}>
+            {this.state.priceName||"租金"} <img src={arrow}></img>
           </div>
         </div>
         <ul ref="list" style={{height:this.state.height,
@@ -96,7 +103,7 @@ export default  class BuildingList extends React.Component {
           this.props.buildings.map((ele,i)=>{
 
 
-            return (  <li key={ele.buildingId} ref={i+1==len?"last":i}>
+            return (  <Link  to={`/houseDetail/${ele.buildingId}`}  key={ele.buildingId}>
                         <ImageLoader
                           src={ele.buildingImage}
                           wrapper={React.DOM.div}
@@ -104,7 +111,8 @@ export default  class BuildingList extends React.Component {
                             return <img src={defaultImg}></img>
                           }}>
                         </ImageLoader>
-                        <footer>
+
+                        <footer ref={ele.buildingId}>
                           <div>
                             <span>{ele.buildingName}</span>
                             <span className="fr sm">套房源</span>
@@ -116,14 +124,19 @@ export default  class BuildingList extends React.Component {
                             <span className="fr">{ele.averageRent}</span>
                           </div>
                         </footer>
-                      </li>)
+                      </Link>)
           })
         }
 
 
-        {this.state.isOpen?<Tappable style={{top:this.state.top}} ref="dropDown" component="div" className="dropDown" onTap={this._closeDropDown.bind(this)}>{dropDown}</Tappable>:null}
+        {this.state.isOpen?<Tappable ref="dropDown" style={{top:this.state.top}} component="div" className="dropDown" onTap={this._closeDropDown.bind(this)}>{dropDown}</Tappable>:null}
 
         </ul>
+        {
+          this.state.isBottom?<footer>
+            最好了
+          </footer>:null
+        }
 
 
       </div>
@@ -131,11 +144,10 @@ export default  class BuildingList extends React.Component {
     )
   }
   _selectChange(type,e){
-    console.log(type);
     this.setState({
       dropDown:type,
       isOpen:true,
-      top:this.refs.list.scrollTop
+      top:this.refs.list.offsetTop
     })
 
 

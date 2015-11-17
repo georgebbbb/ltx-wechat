@@ -8,41 +8,39 @@ import position from '../../../img/map-xiangqing.png'
 import more from '../../../img/more.png'
 import phoneRed from '../../../img/phone.png'
 import phoneWhite from '../../../img/phone-white.png'
-import {fetchBuilding} from '../../../actions'
+import {fetchBuilding,setCurrentBuilding,clearBuilding} from '../../../actions'
 import { connect } from 'react-redux';
 import Rent from './Rent';
 
 @connect((state)=>{
-  return {building:state.building}
+
+  return {
+    building:state.building.building,
+    router:state.router
+  }
   },
   (dispatch)=>{
 
   return {
-    fetchBuilding: () => dispatch(fetchBuilding())
+    fetchBuilding: () => dispatch(fetchBuilding()),
+    setCurrentBuilding:(id)=> dispatch(setCurrentBuilding(id)),
+    clearBuilding:()=>dispatch(clearBuilding())
   }})
 export default  class HouseDetail  extends React.Component {
 
 
 
-  fetchBuilding(){
-
+  componentDidMount(){
+    this.props.setCurrentBuilding(this.props.router.params.id)
     this.props.fetchBuilding()
   }
-
-  componentDidMount(){
-
-    this.fetchBuilding()
-
-  }
-  componentDidUpdate(){
-
+  componentWillUnmount(){
+    this.props.clearBuilding()
 
   }
 
   render() {
     const {building} = this.props;
-    console.log(building);
-
     return (
       <div className="house-detail">
         <div className="big-img">
@@ -60,12 +58,11 @@ export default  class HouseDetail  extends React.Component {
           <div>
             <img src={price}/>
             <span className="first">物业费</span>
-            <span>11</span>
+            <span>{building.propertyFee}元/m<sup>2</sup>.月</span>
           </div>
           <div>
             <img src={position}/>
             <span className="first">{building.districtName}</span>
-
             <span>{building.address}</span>
             <img className="more" src={more}/>
           </div>
@@ -74,26 +71,47 @@ export default  class HouseDetail  extends React.Component {
         <section>
           <h3>项目描述</h3>
           <div>
-            <span>今天天气的发生公司的施工事故的上市公司发个地方的施工事故闪光灯阿萨德个十分广泛受到广大粉丝多少个风格</span>
+            <span dangerouslySetInnerHTML={{__html:building.description}} ></span>
           </div>
         </section>
         <section>
           <h3>项目描述</h3>
           <ul>
             <li>
-              <span>得房率:</span><span>80%</span>
+              <span>得房率:</span><span>{building.roomRate}</span>
             </li>
             <li>
-              <span>得房率:</span><span>80%</span>
+              <span>总高:</span><span>{building.maxFloorCount}</span>
             </li>
             <li>
-              <span>得房率:</span><span>80%</span>
+              <span>年代:</span><span>{building.buildYears}</span>
+            </li>
+            <li>
+              <span>写字楼体量:</span><span>{building.officeVolume}</span>
+            </li>
+            <li>
+              <span>开发商:</span><span>{building.developers}</span>
+            </li>
+            <li>
+              <span>空调系统:</span><span>{building.aircondition}</span>
+            </li>
+            <li>
+              <span>货梯:</span><span>{building.goodLiftCount}</span>
+            </li>
+            <li>
+              <span>电梯:</span><span>{building.passengerLiftCount}</span>
+            </li>
+            <li>
+              <span>地上停车位:</span><span>{building.parkingSpaceUp}</span>
+            </li>
+            <li>
+              <span>地下停车位:</span><span>{building.parkingSpaceDown}</span>
             </li>
           </ul>
         </section>
-        <footer>
+        <a href={"tel:"+building.contactMobile}>
           <img src={phoneWhite}/><span>预约电话</span><span className="tel">{building.contactMobile}</span>
-        </footer>
+        </a>
 
       </div>
     )

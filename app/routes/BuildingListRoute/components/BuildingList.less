@@ -53,7 +53,21 @@ div.buildingList {
        border-left: 0px;
 
      }
+     >img {
 
+       float: right;
+       width: 14rem/@dpi;
+       height: 14rem/@dpi;
+       margin-left: 20rem/@dpi;
+       margin-top: 13rem/@dpi;
+       transition: transform 0.5s;
+       -moz-transition: transform 0.5s;
+       -webkit-transition: transform 0.5s;
+
+     }
+     &:hover>img {
+       transform:rotate(180deg);
+     }
    }
 
 
@@ -62,11 +76,13 @@ div.buildingList {
   }
   >ul {
     overflow: auto;
-    position: relative;
-    >li {
+
+    >a {
+      display: block;
       height: 400rem/@dpi;
       position: relative;
       overflow: hidden;
+
       >div{
         margin-top: -60rem/@dpi;
         >img {
@@ -109,7 +125,7 @@ div.buildingList {
      //  height: 480rem/@dpi;
      background-color: rgba(0,0,0,0.8);
      width: 100%;
-     top: 0rem/@dpi;
+     top: 160rem/@dpi;
      left: 0rem;
 
      height: 100%;
@@ -121,20 +137,19 @@ div.buildingList {
        height: 480rem/@dpi;
        font-size: 0rem;
        >ul{
+
          height: 400rem/@dpi;
          overflow: auto;
          background-color: @white;
-
+         -webkit-overflow-scrolling: touch;
          >li{
+           -webkit-overflow-scrolling: touch;
            font-size: 24rem/@dpi;
            padding-left: 20rem/@dpi;
            height: 78rem/@dpi;
            line-height: 78rem/@dpi;
            border-bottom: 2rem/@dpi solid @borderColor;
 
-           // &:last-child {
-           //   border-bottom: 0rem;
-           // }
          }
          &.district {
            vertical-align: top;
@@ -145,6 +160,10 @@ div.buildingList {
            >li {
              height: 80rem/@dpi;
              border: 0rem;
+             &.active {
+               background-color: @backgroundColor;
+               color:@red;
+             }
            }
          }
          &.comm {
@@ -162,7 +181,6 @@ div.buildingList {
          padding-left: 20rem/@dpi;
        }
      }
-
 
     }
   }

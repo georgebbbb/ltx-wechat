@@ -4,7 +4,10 @@ import * as types from '../constants';
 export function fetchBuildingMiddleware({dispatch, getState }){
     return next => action => {
       if(action.type ===types.FETCH_BUILDING){
-        api.fetchBuilding().then(data=>{
+
+
+        const state =  getState()
+        api.fetchBuilding(state.building.building.id).then(data=>{
           action.building=data.data;
           next(action);
         })
@@ -56,6 +59,11 @@ export function fetchDistrictsMiddleware({dispatch, getState }){
         console.log(state.query.city.id);
         api.fetchDistricts({cityId:state.query.city.id}).then((data)=>{
           action.districts=data
+          action.districts.unshift({
+            id:null,
+            name:"不限"
+          })
+
           next(action);
         })
       }else{
@@ -71,6 +79,11 @@ export function fetchCommsMiddleware({dispatch, getState }){
         api.fetchComms({districtId:state.query.city.district.id}).then((data)=>{
 
           action.comms=data.data
+          action.comms.unshift({
+            id:null,
+            name:"不限"
+          })
+
           next(action);
         })
       }else{
@@ -98,6 +111,7 @@ export function fetchBuildingsMiddleware({dispatch, getState }){
         api.fetchBuildings(query).then((data)=>{
           action.buildings=data.data.resultList
           action.curPage=2;
+          action.isBottom=false;
           next(action);
         })
       }else{
@@ -128,6 +142,10 @@ export function addBuildingsMiddleware({dispatch, getState }){
         api.fetchBuildings(query).then((data)=>{
           action.buildings=data.data.resultList
           action.curPage=state.query.curPage+1;
+
+          if(state.query.curPage>1&&data.data.resultList.length==0){
+            action.isBottom=true
+          }
           next(action);
         })
       }else{

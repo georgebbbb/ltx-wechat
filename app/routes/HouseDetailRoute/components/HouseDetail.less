@@ -1,6 +1,7 @@
 @import "../../../vars.less";
 
 .house-detail {
+  padding-bottom: 100rem/@dpi;
   background-color: @backgroundColor;
   >div.big-img {
     position: relative;
@@ -126,10 +127,13 @@
       >span {
           font-size: 26rem/@dpi;
       }
-
+    // &:last-child {
+    //     margin-bottom: 100rem/@dpi;
+    // }
 
     }
     >ul {
+
       >li {
         line-height: 60rem/@dpi;
         >span {
@@ -146,12 +150,17 @@
     }
 
   }
-  >footer {
+  >a {
+    display: block;
     text-align: center;
     line-height: 100rem/@dpi;
     background: @red;
     color: @white;
     font-size: 36rem/@dpi;
+    position: fixed;
+    bottom: 0px;
+    left:0px;
+    width: 100%;
     img {
       margin-right: 10rem/@dpi;
       font-size: 36rem/@dpi;

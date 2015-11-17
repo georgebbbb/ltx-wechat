@@ -29,49 +29,85 @@ export  default class DistrictList  extends React.Component {
 
     super()
 
+    this.state={
+
+    }
+    setTimeout((()=>{
+      this.__handleDistrictTouch=function(ele,e){
+        if(ele.id){
+          e.stopPropagation();
+          this.props.onChange("district",e.target.innerText)
+          this.props.setCurrentDistrict(ele.id)
+          this.props.fetchComms()
+          this.setState({
+            districtId:ele.id
+          })
+        }else {
+          this.props.onChange("district",e.target.innerText)
+          this.props.setCurrentDistrict(ele.id)
+          this.props.setCurrentComm(null)
+          this.props.fetchBuildings()
+        }
+      }
+      this.__handleCommTouch=function(ele,e){
+        this.props.onChange("district",e.target.innerText)
+        this.props.setCurrentComm(ele.id)
+        this.props.fetchBuildings()
+      }
+
+    }).bind(this),600)
+
 
   }
-
-
-
   componentDidMount(){
 
-    this.props.fetchDistricts()
+  this.props.fetchDistricts()
 
   }
 
 
-  handleDistrictTouch(ele,e){
-    e.stopPropagation();
-    this.props.onChange("district",e.target.innerText)
-    this.props.setCurrentDistrict(ele.id)
-    this.props.fetchComms()
+  _handleCommTouch(){
+    if(__handleCommTouch){
+      this.__handleCommTouch(ele,e)
+    }
   }
-  handleCommTouch(ele,e){
-    this.props.onChange("district",e.target.innerText)
-    this.props.setCurrentComm(ele.id)
-    this.props.fetchBuildings()
 
+  _handleDistrictTouch(ele,e){
+    if(this.__handleDistrictTouch){
+      this.__handleDistrictTouch(ele,e)
+    }else {
+      e.stopPropagation();
+    }
   }
+
+
+
+
+
 
 
   render() {
+
 
     return (
       <div>
         <ul className="district">
           {this.props.districts.map((e)=>{
-            return <Tappable  key={e.id} component="li" onTap={this.handleDistrictTouch.bind(this,e)} >{e.name}</Tappable>
+            return <Tappable  key={e.id} component="li" className={e.id == this.state.districtId? "active":null} onTap={this._handleDistrictTouch.bind(this,e)} >{e.name}</Tappable>
 
           })}
         </ul>
-        <ul className="comm">
-          {this.props.comms.map((e)=>{
+        {
+          this.state.districtId?<ul className="comm">
+                    {this.props.comms.map((e)=>{
 
-           return  <Tappable component="li" key={e.id}  onTap={this.handleCommTouch.bind(this,e)} >{e.name}</Tappable>
+                     return  <Tappable component="li" key={e.id}  onTap={this._handleCommTouch.bind(this,e)} >{e.name}</Tappable>
 
-          })}
-        </ul>
+                    })}
+                  </ul>:null
+        }
+
+
       </div>
     )
   }

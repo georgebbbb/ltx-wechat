@@ -1,9 +1,9 @@
 import reqwest from 'reqwest';
 const host = "/api";
 export default {
-  fetchBuilding:function(){
+  fetchBuilding:function(id){
     return reqwest({
-      url: host+"/building/info/960",
+      url: host+"/building/info/"+id,
       method: 'get'
     })
   },
