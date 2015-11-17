@@ -8,7 +8,7 @@ import position from '../../../img/map-xiangqing.png'
 import more from '../../../img/more.png'
 import phoneRed from '../../../img/phone.png'
 import phoneWhite from '../../../img/phone-white.png'
-import {fetchBuilding,setCurrentBuilding,clearBuilding} from '../../../actions'
+import {fetchBuilding,setCurrentBuilding,clearBuilding,fetchBuildingImages} from '../../../actions'
 import { connect } from 'react-redux';
 import Rent from './Rent';
 
@@ -16,14 +16,16 @@ import Rent from './Rent';
 
   return {
     building:state.building.building,
-    router:state.router
+    router:state.router,
+    images:state.building.images
   }
   },
   (dispatch)=>{
   return {
     fetchBuilding: () => dispatch(fetchBuilding()),
     setCurrentBuilding:(id)=> dispatch(setCurrentBuilding(id)),
-    clearBuilding:()=>dispatch(clearBuilding())
+    clearBuilding:()=>dispatch(clearBuilding()),
+    fetchBuildingImages:()=>dispatch(fetchBuildingImages())
   }})
 export default  class HouseDetail  extends React.Component {
 
@@ -32,6 +34,7 @@ export default  class HouseDetail  extends React.Component {
   componentDidMount(){
     this.props.setCurrentBuilding(this.props.router.params.id)
     this.props.fetchBuilding()
+    this.props.fetchBuildingImages()
   }
   componentWillUnmount(){
     this.props.clearBuilding()
@@ -44,13 +47,13 @@ export default  class HouseDetail  extends React.Component {
       <div className="house-detail">
         <div className="big-img">
           <ImageLoader
-            src={defaultImg}
+            src={this.props.images[0]}
             wrapper={React.DOM.div}
             preloader={()=>{
               return <img src={defaultImg}></img>
             }}>
           </ImageLoader>
-          <div className="num">6套</div>
+          <div className="num">{this.props.images.length}</div>
         </div>
         <div className="detail">
           <span>{building.fullName}</span>
@@ -66,7 +69,7 @@ export default  class HouseDetail  extends React.Component {
             <img className="more" src={more}/>
           </div>
         </div>
-        <Rent/>
+        <Rent />
         <section>
           <h3>项目描述</h3>
           <div>

@@ -14,7 +14,8 @@ import {
   fetchDistrictsMiddleware,
   fetchCommsMiddleware,
   fetchBuildingsMiddleware,
-  addBuildingsMiddleware
+  addBuildingsMiddleware,
+  fetchBuildingImagesMiddleware
 } from './middleware'
 import building from './reducers/building'
 import rent from './reducers/rent'
@@ -63,7 +64,8 @@ const store = compose(
   fetchDistrictsMiddleware,
   fetchCommsMiddleware,
   fetchBuildingsMiddleware,
-  addBuildingsMiddleware
+  addBuildingsMiddleware,
+  fetchBuildingImagesMiddleware
 ),
   reduxReactRouter({createHistory})
 )(createStore)(reducer);

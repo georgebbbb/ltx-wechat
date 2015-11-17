@@ -50,6 +50,7 @@ export  default class DistrictList  extends React.Component {
         }
       }
       this.__handleCommTouch=function(ele,e){
+        console.log(888);
         this.props.onChange("district",e.target.innerText)
         this.props.setCurrentComm(ele.id)
         this.props.fetchBuildings()
@@ -66,8 +67,8 @@ export  default class DistrictList  extends React.Component {
   }
 
 
-  _handleCommTouch(){
-    if(__handleCommTouch){
+  _handleCommTouch(ele,e){
+    if(this.__handleCommTouch){
       this.__handleCommTouch(ele,e)
     }
   }
@@ -106,8 +107,6 @@ export  default class DistrictList  extends React.Component {
                     })}
                   </ul>:null
         }
-
-
       </div>
     )
   }

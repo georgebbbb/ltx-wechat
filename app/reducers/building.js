@@ -1,10 +1,11 @@
-import {FETCH_BUILDING,FETCH_BUILDINGS,ADD_BUILDINGS,SET_CURRENT_BUILDING,CLEAR_BUILDING} from '../constants';
+import {FETCH_BUILDING,FETCH_BUILDINGS,ADD_BUILDINGS,SET_CURRENT_BUILDING,CLEAR_BUILDING,FETCH_BUILDING_IMAGES} from '../constants';
 const initialState={
   buildings:[],
   isBottom:false,
   building:{
 
-  }
+  },
+  images:[]
 
 }
 
@@ -39,6 +40,10 @@ export default function area(state = initialState, action) {
         building:{
           id:state.building.id
         }
+      });
+    case FETCH_BUILDING_IMAGES:
+      return Object.assign({}, state, {
+        images:action.images
       });
   default:
     return state;

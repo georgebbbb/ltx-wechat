@@ -7,6 +7,12 @@ export default {
       method: 'get'
     })
   },
+  fetchBuildingImages:function(id){
+    return reqwest({
+      url: host+"/building/info/image/"+id,
+      method: 'get'
+    })
+  },
 
   fetchRent:function(query){
     return reqwest({
@@ -45,4 +51,5 @@ export default {
       data: query,
     })
   }
+
 }

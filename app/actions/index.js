@@ -3,8 +3,8 @@ import * as types from '../constants';
 export function fetchBuilding(){
   return {type:types.FETCH_BUILDING}
 }
-export function fetchRent(){
-  return {type:types.FETCH_RENT}
+export function fetchRent(id){
+  return {type:types.FETCH_RENT,id}
 }
 export function releaseUnit(query){
   return {type:types.RELEASE_UNIT,query}
@@ -47,4 +47,11 @@ export function setCurrentBuilding(id){
 
 export function clearBuilding(){
   return {type:types.CLEAR_BUILDING}
+}
+export function clearRent(){
+  return {type:types.CLEAR_RENT}
+}
+
+export function fetchBuildingImages(){
+  return {type:types.FETCH_BUILDING_IMAGES}
 }

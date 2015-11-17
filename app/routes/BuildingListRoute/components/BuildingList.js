@@ -10,6 +10,7 @@ import PriceList from "./PriceList";
 import DistrictList from "./DistrictList";
 import arrow from "../../../img/arrow.png";
 import {Link} from 'react-router';
+import mapImg from "../../../img/map-xiangqing.png";
 
 @connect((state)=>{
   return {
@@ -57,6 +58,9 @@ export default  class BuildingList extends React.Component {
           this.props.addBuildings()
         }
     }).bind(this)
+    // window.scroll=function(){
+    //   alert(121)
+    // }
 
   }
 
@@ -82,7 +86,7 @@ export default  class BuildingList extends React.Component {
     return (
       <div className="buildingList">
         <header >
-          <div>地图</div>
+          <div><img src={mapImg}/> 地图</div>
           <input placeholder="请输入楼盘名称"/>
         </header>
         <div className="query" ref="query">

@@ -4,13 +4,14 @@ import {fetchBuilding} from '../../../actions'
 import { connect } from 'react-redux';
 import defaultImg from '../../../img/default_bb.png';
 import more from '../../../img/more.png';
-import {fetchRent} from '../../../actions'
+import {fetchRent,clearRent} from '../../../actions'
 @connect((state)=>{
   return {rent:state.rent}
   },
   (dispatch)=>{
   return {
-    fetchRent: () => dispatch(fetchRent())
+    fetchRent: () => dispatch(fetchRent()),
+    clearRent:()=>dispatch(clearRent())
   }})
 export default  class Rent  extends React.Component {
 
@@ -22,9 +23,9 @@ export default  class Rent  extends React.Component {
     this.fetchRent()
 
   }
-  componentDidUpdate(){
+  componentWillUnmount(){
 
-
+    this.props.clearRent()
   }
 
   render() {
@@ -33,6 +34,7 @@ export default  class Rent  extends React.Component {
     const {rent} = this.props
 
     const rents = rent.rents.map((e)=>{
+
       return (
         <div key={e.groupId} className="rent-item">
           <SmallImg src={e.unitImage} num={6}/>

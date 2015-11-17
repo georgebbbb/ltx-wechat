@@ -4,8 +4,6 @@ import * as types from '../constants';
 export function fetchBuildingMiddleware({dispatch, getState }){
     return next => action => {
       if(action.type ===types.FETCH_BUILDING){
-
-
         const state =  getState()
         api.fetchBuilding(state.building.building.id).then(data=>{
           action.building=data.data;
@@ -22,13 +20,25 @@ export function fetchRentMiddleware({dispatch, getState }){
     return next => action => {
       if(action.type ===types.FETCH_RENT){
         const state = getState();
-        api.fetchRent({
-          curPage:state.curPage,
-          buildingId:960
-        }).then(data=>{
+        const query ={
+          maxPrice:state.query.price.max,
+          minPrice:state.query.price.min,
+          maxArea :state.query.area.max,
+          minArea :state.query.area.min,
+          cityId  :state.query.city.id,
+          districtId : state.query.city.district.id,
+          commId: state.query.city.district.comm.id,
+          pageSize:4,
+          buildingId:state.router.params.id,
+          curPage:state.rent.curPage
+        }
+
+
+        api.fetchRent(query).then(data=>{
           action.rents=data.data.resultList;
           action.totalCount =data.data.totalCount;
           action.curPage=state.curPage+1;
+          console.log(data.data);
           next(action);
         })
       }else{
@@ -56,7 +66,8 @@ export function fetchDistrictsMiddleware({dispatch, getState }){
 
       if(action.type ===types.FETCH_DISTRICTS){
         const state = getState();
-        console.log(state.query.city.id);
+
+
         api.fetchDistricts({cityId:state.query.city.id}).then((data)=>{
           action.districts=data
           action.districts.unshift({
@@ -146,6 +157,25 @@ export function addBuildingsMiddleware({dispatch, getState }){
           if(state.query.curPage>1&&data.data.resultList.length==0){
             action.isBottom=true
           }
+          next(action);
+        })
+      }else{
+        next(action);
+      }
+    }
+}
+export function fetchBuildingImagesMiddleware({dispatch, getState }){
+    return next => action => {
+
+      if(action.type ===types.FETCH_BUILDING_IMAGES){
+
+        const state = getState();
+
+        api.fetchBuildingImages(state.router.params.id).then((data)=>{
+        
+          action.images = data.data.map((ele)=>{
+            return ele.path
+          })
           next(action);
         })
       }else{
