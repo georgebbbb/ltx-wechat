@@ -75,17 +75,33 @@ div.buildingList {
    }
 
 
-
-
   }
   >ul {
     overflow: auto;
+    // background: url('../../../img/bg-pic.png') center bottom no-repeat;
+    background-clip: 80%;
+    >footer {
+      height: 120px;
+      color: @red;
+      font-size: 26px;
+      line-height: 120px;
+      position: absolute;
+      width: 100%;
+      bottom: 0px;
+      left:0px;
+      text-align: center;
+      z-index: 0;
+
+    }
+
+
 
     >a {
       display: block;
       height: 400rem/@dpi;
       position: relative;
       overflow: hidden;
+      z-index: 1;
 
       >div{
         margin-top: -60rem/@dpi;

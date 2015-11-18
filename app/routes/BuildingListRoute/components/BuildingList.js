@@ -107,7 +107,9 @@ export default  class BuildingList extends React.Component {
           this.props.buildings.map((ele,i)=>{
 
 
-            return (  <Link  to={`/houseDetail/${ele.buildingId}`}  key={ele.buildingId}>
+            return (  <Link  to={`/houseDetail/${ele.buildingId}`}  key={ele.buildingId} style={{
+              marginBottom:(i+1)==this.props.buildings.length?"120px":"0px"
+            }}>
                         <ImageLoader
                           src={ele.buildingImage}
                           wrapper={React.DOM.div}
@@ -135,12 +137,13 @@ export default  class BuildingList extends React.Component {
 
         {this.state.isOpen?<Tappable ref="dropDown" style={{top:this.state.top}} component="div" className="dropDown" onTap={this._closeDropDown.bind(this)}>{dropDown}</Tappable>:null}
 
-        </ul>
+        <footer>
         {
-          this.state.isBottom?<footer>
-            最好了
-          </footer>:null
+          this.props.isBottom?"Oops,页面到底了！":"加载中。。。。"
         }
+        </footer>
+        </ul>
+
 
 
       </div>

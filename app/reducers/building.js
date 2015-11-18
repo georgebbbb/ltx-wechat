@@ -2,7 +2,9 @@ import {FETCH_BUILDING,FETCH_BUILDINGS,ADD_BUILDINGS,SET_CURRENT_BUILDING,CLEAR_
 const initialState={
   buildings:[],
   isBottom:false,
+  isNull  :false,
   building:{
+
 
   },
   images:[]
