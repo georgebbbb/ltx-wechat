@@ -77,6 +77,7 @@ div.buildingList {
 
   }
   >ul {
+    // position: relative;
     overflow: auto;
     // background: url('../../../img/bg-pic.png') center bottom no-repeat;
     background-clip: 80%;
@@ -85,12 +86,60 @@ div.buildingList {
       color: @red;
       font-size: 26px;
       line-height: 120px;
-      position: absolute;
+      // position: absolute;
       width: 100%;
       bottom: 0px;
       left:0px;
       text-align: center;
-      z-index: 0;
+      z-index: 10;
+      position: relative;
+      >div#cercle {
+        height: 40px;
+        width: 40px;
+        display: inline-block;
+        border-radius: 50%;
+        padding: 10px;
+        background: linear-gradient(#c80000,#FFECEE);
+        animation: rotateplane 1s infinite;
+        -webkit-animation: rotateplane 1s infinite;
+
+        >#cercleCache {
+          height: 40px;
+          width: 40px;
+          position: absolute;
+          border-radius: 50%;
+          background-color: @backgroundColor;
+          z-index: 5;
+        }
+      }
+      @-webkit-keyframes rotateplane {
+        0% {
+          transform:rotate(0deg);
+
+          -webkit-transform: rotate(0deg);
+        }
+        100% {
+          transform:rotate(360deg);
+
+          -webkit-transform: rotate(360deg);
+        }
+      }
+
+      @keyframes rotateplane {
+        0% {
+          transform:rotate(0deg);
+
+          -webkit-transform: rotate(0deg);
+        }
+        100% {
+          transform:rotate(360deg);
+
+          -webkit-transform: rotate(360deg);
+        }
+      }
+
+
+
 
     }
 

@@ -11,6 +11,8 @@ import DistrictList from "./DistrictList";
 import arrow from "../../../img/arrow.png";
 import {Link} from 'react-router';
 import mapImg from "../../../img/map-xiangqing.png";
+import loading from "../../../img/loading.gif";
+
 
 @connect((state)=>{
   return {
@@ -107,9 +109,7 @@ export default  class BuildingList extends React.Component {
           this.props.buildings.map((ele,i)=>{
 
 
-            return (  <Link  to={`/houseDetail/${ele.buildingId}`}  key={ele.buildingId} style={{
-              marginBottom:(i+1)==this.props.buildings.length?"120px":"0px"
-            }}>
+            return (  <Link  to={`/houseDetail/${ele.buildingId}`}  key={ele.buildingId} >
                         <ImageLoader
                           src={ele.buildingImage}
                           wrapper={React.DOM.div}
@@ -139,7 +139,7 @@ export default  class BuildingList extends React.Component {
 
         <footer>
         {
-          this.props.isBottom?"Oops,页面到底了！":"加载中。。。。"
+          this.props.isBottom?<div id="cercle"><div id="cercleCache"/></div>:<div id="cercle"><div id="cercleCache"/></div>
         }
         </footer>
         </ul>

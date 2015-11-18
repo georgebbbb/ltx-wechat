@@ -46,8 +46,9 @@ module.exports = {
     },{
       test: /\.jpg$/,
       loader: 'file-loader'
-    },{test: /\.png$/,
-       loader: 'url-loader?limit=8192'}]
+    },{
+      test: /\.(png|gif)$/,
+      loader: 'url-loader?limit=8192'}]
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
