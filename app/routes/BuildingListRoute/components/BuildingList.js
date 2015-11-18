@@ -139,7 +139,7 @@ export default  class BuildingList extends React.Component {
 
         <footer>
         {
-          this.props.isBottom?<div id="cercle"><div id="cercleCache"/></div>:<div id="cercle"><div id="cercleCache"/></div>
+          this.props.isBottom?"Oops,页面到底了！":<div id="cercle"><div id="cercleCache"/></div>
         }
         </footer>
         </ul>
