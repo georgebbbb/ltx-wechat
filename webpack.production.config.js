@@ -16,7 +16,7 @@ var config = {
     // 当 React 作为一个 node 模块安装的时候，
     // 我们可以直接指向它，就比如 require('react')
     //把数组里面的js 打成vendors
-    //vendors: ['react','redux','react-dom','react-router','redux-router','react-imageloader','reqwest']
+    vendors: ['react','redux','react-dom','react-router','redux-router','react-imageloader','reqwest']
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -49,7 +49,7 @@ var config = {
 
   },
   plugins: [
-    // new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
+    new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
     new HtmlWebpackPlugin({
       //inject: true,
       template: 'index-template.html',
