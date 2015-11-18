@@ -93,11 +93,9 @@ const rootRoute = {
 class Root extends Component {
   render() {
     return (
-
         <Provider store={store}>
           <ReduxRouter  routes={rootRoute}></ReduxRouter>
         </Provider>
-
     );
   }
 }

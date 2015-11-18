@@ -40,15 +40,18 @@ var config = {
       test: /\.less$/,
       loader: 'style!css!less'
     },{
-      test: /\.(png|jpg)$/,
+      test: /\.jpg$/,
       loader: 'file-loader'
-    }]
+    },{
+      test: /\.png$/,
+      loader: 'url-loader?limit=8192'}]
+
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
     new HtmlWebpackPlugin({
       //inject: true,
-      template: 'index-template.html', 
+      template: 'index-template.html',
       //templateContent: "<div id='root'></div>"
     }), //https://github.com/ampedandwired/html-webpack-plugin 此处可配置
     new webpack.HotModuleReplacementPlugin()
