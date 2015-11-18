@@ -44,8 +44,9 @@ var config = {
       test: /\.jpg$/,
       loader: 'file-loader'
     },{
-      test: /\.png$/,
+      test: /\.(png|gif)$/,
       loader: 'url-loader?limit=8192'}]
+
 
   },
   plugins: [
