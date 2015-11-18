@@ -10,6 +10,7 @@ var config = {
   entry: {
     app: path.resolve(__dirname, 'app/main.js'),
 
+
     // Since react is installed as a node module, node_modules/react,
     // we can point to it directly, just like require('react');
     // 当 React 作为一个 node 模块安装的时候，
