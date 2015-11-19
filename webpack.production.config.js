@@ -57,7 +57,7 @@ var config = {
       //templateContent: "<div id='root'></div>"
     }), //https://github.com/ampedandwired/html-webpack-plugin 此处可配置
     new webpack.HotModuleReplacementPlugin(),
-    // new WebpackMd5Hash()
+    new WebpackMd5Hash()
   ]
 };
 
