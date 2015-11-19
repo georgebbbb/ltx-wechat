@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var node_modules_dir = path.resolve(__dirname, 'node_modules');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-
+var WebpackMd5Hash = require('webpack-md5-hash');
 var node_modules = path.resolve(__dirname, 'node_modules');
 var pathToReactRouter = path.resolve(node_modules, 'react-router/umd/ReactRouter.min.js');
 var pathToReduxRouter = path.resolve(node_modules, 'react-router/umd/ReactRouter.min.js');
@@ -56,7 +56,8 @@ var config = {
       template: 'index-template.html',
       //templateContent: "<div id='root'></div>"
     }), //https://github.com/ampedandwired/html-webpack-plugin 此处可配置
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new WebpackMd5Hash()
   ]
 };
 
