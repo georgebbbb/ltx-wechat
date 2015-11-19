@@ -2,7 +2,8 @@ import {FETCH_RENT,CLEAR_RENT} from '../constants';
 const initialState={
   curPage:1,
   rents:[],
-  totalCount:0
+  totalCount:0,
+  isMore:true
 
 }
 
@@ -12,7 +13,8 @@ export default function area(state = initialState, action) {
     return Object.assign({}, state, {
       totalCount:action.totalCount,
       rents:state.rents.concat(action.rents),
-      curPage:action.curPage
+      curPage:action.curPage,
+      isMore:action.isMore
     });
   case CLEAR_RENT:
   return Object.assign({}, state, {

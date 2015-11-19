@@ -32,13 +32,15 @@ export function fetchRentMiddleware({dispatch, getState }){
           buildingId:state.router.params.id,
           curPage:state.rent.curPage
         }
-
+        console.log(query);
 
         api.fetchRent(query).then(data=>{
           action.rents=data.data.resultList;
+          console.log(data);
           action.totalCount =data.data.totalCount;
-          action.curPage=state.curPage+1;
+          action.curPage=state.rent.curPage+1;
           console.log(data.data);
+          action.isMore = (data.data.totalCount>state.rent.curPage*12 )
           next(action);
         })
       }else{
@@ -172,7 +174,7 @@ export function fetchBuildingImagesMiddleware({dispatch, getState }){
         const state = getState();
 
         api.fetchBuildingImages(state.router.params.id).then((data)=>{
-        
+
           action.images = data.data.map((ele)=>{
             return ele.path
           })

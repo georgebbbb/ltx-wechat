@@ -56,7 +56,8 @@ export default  class Rent  extends React.Component {
             共{rent.totalCount}套在租房源
           </span>
           {rents}
-          <div className="more" onClick={this.fetchRent.bind(this)}>
+          <div  style={{display:rent.isMore?"block":"none"}} 
+          className="more" onClick={this.fetchRent.bind(this)}>
             查看更多
           </div>
         </div>
