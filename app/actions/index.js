@@ -45,6 +45,11 @@ export function setCurrentBuilding(id){
   return {type:types.SET_CURRENT_BUILDING,id}
 }
 
+export function setCurrentCity(id){
+  console.log(id);
+  return {type:types.SET_CURRENT_CITY,id}
+}
+
 export function clearBuilding(){
   return {type:types.CLEAR_BUILDING}
 }

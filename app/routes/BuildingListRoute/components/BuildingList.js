@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './BuildingList.less';
 import defaultImg from '../../../img/default_bb.png';
 import ImageLoader from 'react-imageloader'
-import {fetchBuildings,addBuildings}  from '../../../actions'
+import {fetchBuildings,addBuildings,setCurrentCity}  from '../../../actions'
 import Tappable from "react-tappable"
 import AreaList from "./AreaList";
 import PriceList from "./PriceList";
@@ -18,13 +18,15 @@ import loading from "../../../img/loading.gif";
   return {
     buildings:state.building.buildings,
     isBottom:state.building.isBottom,
-    building:state.building.building
+    building:state.building.building,
+    router:state.router
   }
   },
   (dispatch)=>{
   return {
     fetchBuildings:()=>dispatch(fetchBuildings()),
-    addBuildings  :()=>dispatch(addBuildings())
+    addBuildings  :()=>dispatch(addBuildings()),
+    setCurrentCity:(id)=>dispatch(setCurrentCity(id))
   }})
 export default  class BuildingList extends React.Component {
 
@@ -48,6 +50,10 @@ export default  class BuildingList extends React.Component {
     if(this.props.buildings.length>0){
         this.refs.list.scrollTop=this.refs[this.props.building.id].parentElement.offsetTop;
     }else {
+
+      const cityId = this.props.router.location.query.cityId|| 867;
+      console.log(cityId);
+      this.props.setCurrentCity(cityId)
       this.props.fetchBuildings()
     }
     this.setState({
