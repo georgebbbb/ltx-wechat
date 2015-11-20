@@ -32,7 +32,7 @@ export function fetchRentMiddleware({dispatch, getState }){
           buildingId:state.router.params.id,
           curPage:state.rent.curPage
         }
-        console.log(query);
+
 
         api.fetchRent(query).then(data=>{
           action.rents=data.data.resultList;

@@ -60,5 +60,5 @@ var config = {
     new WebpackMd5Hash()
   ]
 };
-
+ 
 module.exports = config;
