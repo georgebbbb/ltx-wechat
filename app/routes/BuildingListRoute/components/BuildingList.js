@@ -52,7 +52,7 @@ export default  class BuildingList extends React.Component {
     }else {
 
       const cityId = this.props.router.location.query.cityId|| 867;
-      console.log(cityId);
+
       this.props.setCurrentCity(cityId)
       this.props.fetchBuildings()
     }
@@ -94,7 +94,7 @@ export default  class BuildingList extends React.Component {
     return (
       <div className="buildingList">
         <header >
-          <div><img src={mapImg}/> 地图</div>
+          <div><img src={mapImg}/>地图</div>
           <input placeholder="请输入楼盘名称"/>
         </header>
         <div className="query" ref="query">
