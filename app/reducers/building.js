@@ -20,7 +20,8 @@ export default function area(state = initialState, action) {
   case FETCH_BUILDINGS:
     return Object.assign({}, state, {
       buildings:action.buildings,
-      isBottom:action.isBottom
+      isBottom:action.isBottom,
+      isEntrust:action.isEntrust
     });
   case ADD_BUILDINGS:
     return Object.assign({}, state, {

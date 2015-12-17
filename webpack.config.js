@@ -1,9 +1,9 @@
 var path = require('path');
 var webpack = require("webpack")
 //为了放在每次修改都便利 react 给他起个花名
-var node_modules = path.resolve(__dirname, 'node_modules');
+// var node_modules = path.resolve(__dirname, 'node_modules');
 // var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
-var pathToReactRouter = path.resolve(node_modules, 'react-router/umd/ReactRouter.min.js');
+// var pathToReactRouter = path.resolve(node_modules, 'react-router/umd/ReactRouter.min.js');
 var WebpackMd5Hash = require('webpack-md5-hash');
 module.exports = {
 
@@ -52,7 +52,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-         
+
   ]
 
 };

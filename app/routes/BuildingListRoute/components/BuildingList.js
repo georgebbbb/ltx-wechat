@@ -19,7 +19,8 @@ import loading from "../../../img/loading.gif";
     buildings:state.building.buildings,
     isBottom:state.building.isBottom,
     building:state.building.building,
-    router:state.router
+    router:state.router,
+    isEntrust:state.building.isEntrust
   }
   },
   (dispatch)=>{
@@ -91,6 +92,35 @@ export default  class BuildingList extends React.Component {
 
     this.isAdd=true;
 
+    const bottom = function(that){
+
+      if(that.props.isEntrust){
+        //委托在这里写
+        return (
+          <div class="entrust">
+
+
+          </div>
+
+
+        )
+
+      }else {
+
+        return (<footer>
+                {
+                  that.props.isBottom?"Oops,页面到底了！":<div id="cercle"><div id="cercleCache"/></div>
+                }
+                </footer>)
+
+      }
+
+
+
+    }(this)
+
+
+    console.log(777);
     return (
       <div className="buildingList">
         <header >
@@ -143,11 +173,7 @@ export default  class BuildingList extends React.Component {
 
         {this.state.isOpen?<Tappable ref="dropDown" style={{top:this.state.top}} component="div" className="dropDown" onTap={this._closeDropDown.bind(this)}>{dropDown}</Tappable>:null}
 
-        <footer>
-        {
-          this.props.isBottom?"Oops,页面到底了！":<div id="cercle"><div id="cercleCache"/></div>
-        }
-        </footer>
+        {bottom}
         </ul>
 
 

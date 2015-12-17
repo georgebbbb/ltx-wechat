@@ -125,6 +125,15 @@ export function fetchBuildingsMiddleware({dispatch, getState }){
           action.buildings=data.data.resultList
           action.curPage=2;
           action.isBottom=false;
+          action.isEntrust=false;
+          if(action.buildings.length<4){
+
+            action.isBottom=true;
+            if(action.buildings.length==0){
+              action.isEntrust=true;
+            }
+
+          }
           next(action);
         })
       }else{

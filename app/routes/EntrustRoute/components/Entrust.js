@@ -26,7 +26,7 @@ export  default class Entrust  extends React.Component {
 
   render() {
     const {building} = this.props;
-    console.log(building);
+
 
     return (
       <div className="entrust">

@@ -46,8 +46,6 @@ var config = {
     },{
       test: /\.(png|gif)$/,
       loader: 'url-loader?limit=8192'}]
-
-
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
@@ -56,9 +54,9 @@ var config = {
       template: 'index-template.html',
       //templateContent: "<div id='root'></div>"
     }), //https://github.com/ampedandwired/html-webpack-plugin 此处可配置
-    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
     new WebpackMd5Hash()
   ]
 };
- 
+
 module.exports = config;
